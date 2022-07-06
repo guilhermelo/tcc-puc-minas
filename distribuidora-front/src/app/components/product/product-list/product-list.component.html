@@ -1,0 +1,20 @@
+<mat-grid-list cols="3" rowHeight="1:2">
+  <mat-grid-tile *ngFor="let i of items">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Item {{i}}</mat-card-title>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="https://s3.amazonaws.com/produtos.vipcommerce.com.br/250x250/db857836-148d-4c5e-a764-69b15d2bee72.jpg"
+        alt="Descrição do produto"
+      />
+      <mat-card-content>
+        <p>Descrição do produto</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Comprar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
