@@ -1,2 +1,39 @@
-<menu></menu>
-<!-- <router-outlet></router-outlet> -->
+<p>
+  <mat-toolbar [style.background-color]="'#82846D'">
+    <span style="color: #fff">Distribuidora de Produtos</span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>shopping_cart_checkout</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+
+<form class="pesquisar">
+  <mat-form-field style="width:50vw" class="example-full-width" appearance="fill">
+    <mat-label>Pesquisar</mat-label>
+    <input matInput maxlength="50" placeholder="Coca-Cola..." (keydown.enter)="pesquisar($event)">
+  </mat-form-field>
+</form>
+
+<mat-grid-list cols="4" gutterSize="20" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let produto of produtos">
+    <mat-card [style]="'max-width: 400px'">
+      <mat-card-header>
+        <mat-card-title>{{ produto.name }}</mat-card-title>
+      </mat-card-header>
+      <img
+        mat-card-md-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content>
+        <p>
+          Descrição do produto
+        </p>
+        <p>{{ produto.price }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="adicionarCarrinho(produto.id)">Comprar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

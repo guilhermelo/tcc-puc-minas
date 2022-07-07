@@ -7,14 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuModule } from './components/menu/menu.module';
 import { ProductModule } from './components/product/product.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    MenuModule
+    MatGridListModule,
+    MatCardModule,
+    MatInputModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   declarations: [AppComponent],
   providers: [],
