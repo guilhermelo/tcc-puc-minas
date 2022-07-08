@@ -1,27 +1,22 @@
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
-import { MenuModule } from './components/menu/menu.module';
-import { ProductModule } from './components/product/product.module';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MainModule } from './components/main/main.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule,
-    BrowserAnimationsModule,
-    MatGridListModule,
-    MatCardModule,
-    MatInputModule,
-    MatIconModule,
-    MatToolbarModule
+    AppRoutingModule,
+    MainModule
   ],
   declarations: [AppComponent],
   providers: [],

@@ -11,12 +11,10 @@ export class ShoppingCartService {
     this.storage = window.localStorage;
   }
 
-  set(key: string, value: any): boolean {
+  set(key: string, value: any) {
     if (this.storage) {
-      this.storage.setItem(key, value);
-      return true;
+      this.storage.setItem(key, JSON.stringify(value));
     }
-    return false;
   }
 
   get(key: string): any {
