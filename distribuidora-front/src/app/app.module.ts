@@ -10,13 +10,18 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { MainModule } from './components/main/main.module';
+import { MenuModule } from './components/menu/menu.module';
+import { BarraPesquisaModule } from './components/barra-pesquisa/barra-pesquisa.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    MainModule
+    MenuModule,
+    BarraPesquisaModule
   ],
   declarations: [AppComponent],
   providers: [],

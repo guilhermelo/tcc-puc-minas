@@ -7,11 +7,12 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   {
     path: 'shopping-cart',
-    loadChildren: () =>
-      import('./components/shopping-cart/shopping-cart.module').then(
-        (m) => m.ShoppingCartModule
-      ),
+    loadChildren: () => import('./components/shopping-cart/shopping-cart.module').then((m) => m.ShoppingCartModule),
   },
+  {
+    path: 'extract',
+    loadChildren: () => import('./components/resumo-pedido/resumo-pedido.module').then(m => m.ResumoPedidoModule)
+  }
 ];
 
 @NgModule({

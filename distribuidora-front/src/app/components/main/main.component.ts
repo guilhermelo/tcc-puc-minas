@@ -49,19 +49,9 @@ export class MainComponent {
     }
   ];
 
-
-  public pesquisar(e: Event) {
-    e.preventDefault();
-    console.log('Pesquisando...');
-  }
-
   public adicionarCarrinho(id: string) {
     const items = this.shoppingCartService.get('shoppingCart') || [];
 
     this.shoppingCartService.set('shoppingCart', items.concat(id));
-  }
-
-  abrirCarrinho() {
-    this.router.navigate(['shopping-cart']);
   }
 }
