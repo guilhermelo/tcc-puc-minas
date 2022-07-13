@@ -1,18 +1,18 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
-import { MainModule } from './components/main/main.module';
-import { MenuModule } from './components/menu/menu.module';
+import { AppRoutingModule } from './app.routing';
 import { BarraPesquisaModule } from './components/barra-pesquisa/barra-pesquisa.module';
-import { HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './pages/login/login.module';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   imports: [
@@ -20,11 +20,14 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    MenuModule,
-    BarraPesquisaModule
+    BarraPesquisaModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatBadgeModule
   ],
   declarations: [AppComponent],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

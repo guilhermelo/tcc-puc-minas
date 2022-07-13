@@ -1,12 +1,12 @@
 <mat-selection-list #items>
   <mat-list-item *ngFor="let item of itemsOfCart">
-    <p>{{ item }}</p>
+    <p>Produto: {{ item.name }} | Preço: {{ item.price }} </p>
   </mat-list-item>
 </mat-selection-list>
 
 <mat-card>
   <h2>Resumo do Pedido</h2>
-  <p>3 produtos    R$ 300,00</p>
+  <p>{{itemsOfCart.length}} produtos    R$ {{ total }}</p>
   <button mat-stroked-button color="primary" (click)="informarEndereco()">Informar endereço de entrega</button>
 </mat-card>
 

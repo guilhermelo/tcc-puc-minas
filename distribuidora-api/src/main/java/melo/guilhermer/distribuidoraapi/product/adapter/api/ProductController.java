@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -24,8 +26,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public Slice<ProductList> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
+    public List<ProductList> findAll(Pageable pageable) {
+        return repository.findAll(pageable).getContent();
     }
 
     @GetMapping("/{id}")

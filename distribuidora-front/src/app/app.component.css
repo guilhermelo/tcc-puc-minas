@@ -1,0 +1,11 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  color: #fff;
+}
+
+.title:hover {
+  cursor: pointer;
+}

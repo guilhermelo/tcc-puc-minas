@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ProductList } from "src/app/schema/poduct";
+import { ProductService } from "src/app/services/product.service";
 import { ShoppingCartService } from "src/app/services/shopping-cart.service";
 
 @Component({
@@ -7,51 +9,21 @@ import { ShoppingCartService } from "src/app/services/shopping-cart.service";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 
-  constructor(private router: Router, private shoppingCartService: ShoppingCartService) {}
+  constructor(private router: Router, private shoppingCartService: ShoppingCartService, private productService: ProductService) {}
 
-  produtos = [
-    {
-      id: 1,
-      name: 'Produto 1',
-      price: 100
-    },
-    {
-      id: 2,
-      name: 'Produto 2',
-      price: 200
-    },
-    {
-      id: 3,
-      name: 'Produto 3',
-      price: 300
-    },
-    {
-      id: 4,
-      name: 'Produto 4',
-      price: 400
-    },
-    {
-      id: 5,
-      name: 'Produto 5',
-      price: 500
-    },
-    {
-      id: 6,
-      name: 'Produto 6',
-      price: 600
-    },
-    {
-      id: 7,
-      name: 'Produto 7',
-      price: 700
-    }
-  ];
+  products = new Array<ProductList>();
+
+  ngOnInit(): void {
+    this.productService.listAllProducts().subscribe(products => {
+      this.products = products;
+    })
+  }
+
+
 
   public adicionarCarrinho(id: string) {
-    const items = this.shoppingCartService.get('shoppingCart') || [];
-
-    this.shoppingCartService.set('shoppingCart', items.concat(id));
+    this.shoppingCartService.addItemToCart(id).subscribe(() => {});
   }
 }

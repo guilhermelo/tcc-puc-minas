@@ -17,9 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin
+@CrossOrigin(exposedHeaders = "Location")
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -45,8 +46,8 @@ public class OrderController {
     }
 
     @GetMapping("/{userId}")
-    public Slice<OrderList> getAll(@PathVariable UUID userId, Pageable pageable) {
-        return repository.findAll(pageable);
+    public List<OrderList> getAll(@PathVariable UUID userId, Pageable pageable) {
+        return repository.findAll(pageable).getContent();
     }
 
     @PostMapping("/{orderId}/items")
