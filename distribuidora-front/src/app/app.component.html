@@ -2,6 +2,9 @@
   <mat-toolbar [style.background-color]="'#82846D'">
     <span class="title" routerLink="/">Distribuidora de Produtos</span>
     <span class="example-spacer"></span>
+    <div *ngIf="auth.user$ | async as user">
+      <span style="color: #fff;">Bem vindo, {{ user.name }}</span>
+    </div>
     <button
       mat-icon-button
       class="example-icon favorite-icon"
@@ -10,6 +13,15 @@
     >
       <mat-icon [matBadge]="numberOfItemsInCart" matBadgeColor="warn" style="color: white">shopping_cart_checkout</mat-icon>
     </button>
+    <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+      <button (click)="auth.logout({ returnTo: document.location.origin })">
+        Log out
+      </button>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <button (click)="auth.loginWithRedirect()">Log in</button>
+    </ng-template>
   </mat-toolbar>
 </p>
 

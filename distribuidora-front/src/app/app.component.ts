@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { ShoppingCartService } from './services/shopping-cart.service';
 
 @Component({
@@ -11,7 +13,9 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 export class AppComponent implements OnInit {
   constructor(
     private router: Router,
-    private shoppingCart: ShoppingCartService
+    private shoppingCart: ShoppingCartService,
+    public auth: AuthService,
+    @Inject(DOCUMENT) public document: Document
   ) {}
 
   numberOfItemsInCart = 0;
