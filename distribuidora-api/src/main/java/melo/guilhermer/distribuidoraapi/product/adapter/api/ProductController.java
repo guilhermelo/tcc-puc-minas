@@ -5,7 +5,6 @@ import melo.guilhermer.distribuidoraapi.product.domain.Product;
 import melo.guilhermer.distribuidoraapi.product.domain.projection.ProductList;
 import melo.guilhermer.distribuidoraapi.product.domain.repository.ProductRepository;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
