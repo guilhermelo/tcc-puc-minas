@@ -3,7 +3,7 @@
     <span class="title" routerLink="/">Distribuidora de Produtos</span>
     <span class="example-spacer"></span>
     <div *ngIf="auth.user$ | async as user">
-      <span style="color: #fff">Bem vindo, {{ user.name }}</span>
+      <span style="color: #fff" (click)="teste(user)">Bem vindo, {{ user.name }}</span>
     </div>
     <button
       mat-icon-button

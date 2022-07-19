@@ -7,7 +7,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  url = 'http://localhost:8080';
+  url = 'http://localhost:8080/api';
 
   createOrder(request: CreateOrder) {
     return this.http.post<CreateOrder>(`${this.url}/orders`, request, { observe: 'response' });

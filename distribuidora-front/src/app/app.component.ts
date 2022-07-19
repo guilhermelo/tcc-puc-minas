@@ -29,4 +29,8 @@ export class AppComponent implements OnInit {
   abrirCarrinho() {
     this.router.navigate(['shopping-cart']);
   }
+
+  teste(user: any) {
+    this.auth.getAccessTokenSilently().subscribe(token => console.log(token));
+  }
 }

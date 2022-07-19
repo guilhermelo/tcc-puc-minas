@@ -12,7 +12,7 @@ export class ShoppingCartService {
   constructor(private http: HttpClient) {}
 
   private userId = 'c07f3fd2-df07-4f04-b1da-b46bcf5d3a51';
-  private url = 'http://localhost:8080/shopping-carts';
+  private url = 'http://localhost:8080/api/shopping-carts';
 
   addItemToCart(productId: string) {
     return this.http.post<AddItemToCart>(`${this.url}/${this.userId}`, { productId });
