@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService, User } from '@auth0/auth0-angular';
 import { ShoppingCartService } from './services/shopping-cart.service';
 
 @Component({
@@ -19,18 +19,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   numberOfItemsInCart = 0;
+  user: User;
 
   ngOnInit(): void {
-    this.shoppingCart.count().subscribe((amount) => {
-      this.numberOfItemsInCart = amount;
-    });
+    this.numberOfItemsInCart = this.shoppingCart.count();
   }
 
   abrirCarrinho() {
     this.router.navigate(['shopping-cart']);
-  }
-
-  teste(user: any) {
-    this.auth.getAccessTokenSilently().subscribe(token => console.log(token));
   }
 }

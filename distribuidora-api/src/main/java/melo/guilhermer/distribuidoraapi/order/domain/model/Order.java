@@ -14,7 +14,7 @@ public class Order {
     @Id
     private UUID id;
     private LocalDateTime generatedAt;
-    private UUID userId;
+    private String userNickname;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -26,9 +26,9 @@ public class Order {
     private Order() {
     }
 
-    public Order(UUID userId) {
+    public Order(String userNickname) {
         this.id = UUID.randomUUID();
-        this.userId = userId;
+        this.userNickname = userNickname;
         this.generatedAt = LocalDateTime.now();
         this.status = OrderStatus.MADE;
         this.items = new HashSet<>();

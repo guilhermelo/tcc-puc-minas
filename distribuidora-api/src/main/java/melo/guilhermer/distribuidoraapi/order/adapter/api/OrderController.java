@@ -36,7 +36,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity create(@RequestBody CreateOrderRequest request, UriComponentsBuilder uriBuilder) {
 
-        var order = new Order(request.getUserId());
+        var order = new Order(request.getUserNickname());
 
         repository.save(order);
 
@@ -45,8 +45,8 @@ public class OrderController {
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping("/{userId}")
-    public List<OrderList> getAll(@PathVariable UUID userId, Pageable pageable) {
+    @GetMapping("/{userNickname}")
+    public List<OrderList> getAll(@PathVariable String userNickname, Pageable pageable) {
         return repository.findAll(pageable).getContent();
     }
 

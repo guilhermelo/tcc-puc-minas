@@ -1,5 +1,5 @@
 export interface CreateOrder {
-  userId: string;
+  userNickname: string;
 }
 
 export interface CreateOrderItem {

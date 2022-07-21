@@ -5,33 +5,57 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthConfig, AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
 import { BarraPesquisaModule } from './components/barra-pesquisa/barra-pesquisa.module';
+import { MainComponent } from './components/main/main.component';
+import { MainModule } from './components/main/main.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProductService } from './services/product.service';
 
-const domain = 'dev-ail8x0n8.us.auth0.com';
-const clientId = 'DznYZrTBD25DE1nzplO4lypyZOs9BLLZ';
+const authConfiguration: AuthConfig = {
+  domain: 'dev-ail8x0n8.us.auth0.com',
+  clientId: 'DznYZrTBD25DE1nzplO4lypyZOs9BLLZ',
+  useRefreshTokens: true,
+  scope: 'openid profile',
+  audience: 'http://localhost:8080',
+  httpInterceptor: {
+    allowedList: ['/api/*']
+  }
+};
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MainComponent
+  },
+  {
+    path: 'shopping-cart',
+    loadChildren: () =>
+      import('./components/shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'extract',
+    loadChildren: () =>
+      import('./components/resumo-pedido/resumo-pedido.module').then(
+        (m) => m.ResumoPedidoModule
+      ),
+    canActivate: [AuthGuard],
+  },
+];
+
 
 @NgModule({
   imports: [
     BrowserModule,
-    AuthModule.forRoot({
-      domain,
-      clientId,
-      useRefreshTokens: true,
-      scope: 'openid profile',
-      audience: 'http://localhost:8080',
-      httpInterceptor: {
-        allowedList: ['/api/*']
-      }
-    }),
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    AuthModule.forRoot(authConfiguration),
+    MainModule,
     HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
     BarraPesquisaModule,
     MatToolbarModule,
     MatIconModule,

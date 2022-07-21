@@ -6,6 +6,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { forkJoin, OperatorFunction } from 'rxjs';
 import { ShoppingCartList } from 'src/app/schema/shopping-cart';
+import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'shopping-cart',
@@ -16,22 +17,26 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private shoppingService: ShoppingCartService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private authService: AuthService
   ) {}
 
   itemsOfCart = new Array<ShoppingCartList>();
   total = 0;
+  user: User;
 
   ngOnInit(): void {
-    this.shoppingService.getAll().subscribe(items => {
-      this.itemsOfCart = items;
+    this.authService.getUser().subscribe(user => {
+      this.user = user;
+      this.itemsOfCart = this.shoppingService.getAll();
       this.total = this.itemsOfCart.reduce((total, atual) => total + atual.price, 0);
-    });
+    })
+
   }
 
   informarEndereco() {
     this.orderService
-      .createOrder({ userId: 'c07f3fd2-df07-4f04-b1da-b46bcf5d3a51' })
+      .createOrder({ userNickname: this.user.nickname })
       .pipe(this.getIdFromLocation())
       .pipe(this.addItemsToOrder(this.itemsOfCart))
       .subscribe(() => {

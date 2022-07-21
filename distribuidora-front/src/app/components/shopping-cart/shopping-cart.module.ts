@@ -6,6 +6,7 @@ import { ShoppingCartRoutingModule } from "./shopping-cart.routing";
 import {MatButtonModule} from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";
 import { OrderService } from "src/app/services/order.service";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { OrderService } from "src/app/services/order.service";
     ShoppingCartRoutingModule,
     MatListModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   declarations: [
     ShoppingCartComponent

@@ -3,21 +3,21 @@
     <span class="title" routerLink="/">Distribuidora de Produtos</span>
     <span class="example-spacer"></span>
     <div *ngIf="auth.user$ | async as user">
-      <span style="color: #fff" (click)="teste(user)">Bem vindo, {{ user.name }}</span>
+      <span style="color: #fff">Bem vindo, {{ user.name }}</span>
     </div>
     <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-      (click)="abrirCarrinho()"
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    (click)="abrirCarrinho()"
+  >
+    <mat-icon
+      [matBadge]="numberOfItemsInCart"
+      matBadgeColor="warn"
+      style="color: white"
+      >shopping_cart_checkout</mat-icon
     >
-      <mat-icon
-        [matBadge]="numberOfItemsInCart"
-        matBadgeColor="warn"
-        style="color: white"
-        >shopping_cart_checkout</mat-icon
-      >
-    </button>
+  </button>
     <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
       <button
         mat-icon-button

@@ -11,8 +11,8 @@ import java.util.UUID;
 public interface ShoppingCartRepository extends Repository<ShoppingCart, UUID> {
     void save(ShoppingCart shoppingCart);
 
-    @Query(value = " select cast(s.id as varchar) as id, cast(p.id as varchar) as productId, p.name, p.price from shopping_cart s inner join product p on p.id = s.product_id where s.user_id = :userId", nativeQuery = true)
-    List<ShoppingCartList> findAllByUserId(UUID userId);
+    @Query(value = " select cast(s.id as varchar) as id, cast(p.id as varchar) as productId, p.name, p.price from shopping_cart s inner join product p on p.id = s.product_id where s.user_nickname = :userNickname", nativeQuery = true)
+    List<ShoppingCartList> findAllByUserNickname(String userNickname);
 
-    long countByUserId(UUID userId);
+    long countByUserNickname(String userNickname);
 }

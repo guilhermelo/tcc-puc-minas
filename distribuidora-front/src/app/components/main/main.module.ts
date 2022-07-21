@@ -23,7 +23,7 @@ import { MainComponent } from './main.component';
     MatInputModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   declarations: [MainComponent],
   exports: [MainComponent],

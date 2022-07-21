@@ -1,4 +1,4 @@
-<!-- <mat-grid-list cols="4" gutterSize="20" rowHeight="1:1">
+<mat-grid-list cols="4" gutterSize="20" rowHeight="1:1">
   <mat-grid-tile *ngFor="let product of products">
     <mat-card [style]="'max-width: 400px'">
       <mat-card-header>
@@ -10,15 +10,14 @@
         alt="Photo of a Shiba Inu"
       />
       <mat-card-content>
-        <p>
-          Descrição do produto
-        </p>
+        <p>Descrição do produto</p>
         <p>{{ product.price }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button (click)="adicionarCarrinho(product.id)">Comprar</button>
+        <button mat-stroked-button color="primary" mat-button (click)="adicionarCarrinho(product)">
+          Comprar
+        </button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
-</mat-grid-list> -->
-<p>Principal tela - Listagem de produtos</p>
+</mat-grid-list>

@@ -1,64 +1,64 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { AddItemToCart, ShoppingCartList } from "../schema/shopping-cart";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ProductList } from '../schema/poduct';
+import { ShoppingCartList } from '../schema/shopping-cart';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingCartService {
-
-
+  private _storage: Storage = window.sessionStorage;
+  private _storageName = 'shoppingCart';
 
   constructor(private http: HttpClient) {}
 
-  private userId = 'c07f3fd2-df07-4f04-b1da-b46bcf5d3a51';
-  private url = 'http://localhost:8080/api/shopping-carts';
+  addItemToCart(product: ProductList) {
 
-  addItemToCart(productId: string) {
-    return this.http.post<AddItemToCart>(`${this.url}/${this.userId}`, { productId });
+    const shoppingCartItem: ShoppingCartList = {
+      productId: product.id,
+      name: product.name,
+      price: product.price
+    }
+
+    const shoppingCartItems = this.getAll().concat(shoppingCartItem);
+
+    this.set(this._storageName, shoppingCartItems);
   }
 
-  getAll() {
-    return this.http.get<Array<ShoppingCartList>>(`${this.url}/${this.userId}`);
+  getAll(): ShoppingCartList[] {
+    return this.get(this._storageName) || [];
   }
 
   count() {
-    return this.http.get<number>(`${this.url}/${this.userId}/count`);
+    return this.getAll().length;
   }
 
-  // private storage: Storage;
+  set(key: string, value: any) {
+    if (this._storage) {
+      this._storage.setItem(key, JSON.stringify(value));
+    }
+  }
 
-  // constructor() {
-  //   this.storage = window.localStorage;
-  // }
+  get(key: string): any {
+    if (this._storage) {
+      return JSON.parse(this._storage.getItem(key));
+    }
+    return null;
+  }
 
-  // set(key: string, value: any) {
-  //   if (this.storage) {
-  //     this.storage.setItem(key, JSON.stringify(value));
-  //   }
-  // }
+  remove(key: string): boolean {
+    if (this._storage) {
+      this._storage.removeItem(key);
+      return true;
+    }
+    return false;
+  }
 
-  // get(key: string): any {
-  //   if (this.storage) {
-  //     return JSON.parse(this.storage.getItem(key));
-  //   }
-  //   return null;
-  // }
-
-  // remove(key: string): boolean {
-  //   if (this.storage) {
-  //     this.storage.removeItem(key);
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // clear(): boolean {
-  //   if (this.storage) {
-  //     this.storage.clear();
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
+  clear(): boolean {
+    if (this._storage) {
+      this._storage.clear();
+      return true;
+    }
+    return false;
+  }
 }

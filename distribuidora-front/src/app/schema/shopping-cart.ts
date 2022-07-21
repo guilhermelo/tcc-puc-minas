@@ -3,7 +3,6 @@ export interface AddItemToCart {
 }
 
 export interface ShoppingCartList {
-  id: string;
   productId: string;
   name: string;
   price: number;

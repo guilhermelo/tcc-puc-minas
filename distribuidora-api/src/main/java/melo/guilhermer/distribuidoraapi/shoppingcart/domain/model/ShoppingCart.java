@@ -13,13 +13,13 @@ public class ShoppingCart {
 
     private UUID productId;
 
-    private UUID userId;
+    private String userNickname;
 
     public ShoppingCart() {}
 
-    public ShoppingCart(UUID userId, UUID productId) {
+    public ShoppingCart(String userNickname, UUID productId) {
         this.id = UUID.randomUUID();
-        this.userId = userId;
+        this.userNickname = userNickname;
         this.productId = productId;
     }
 }

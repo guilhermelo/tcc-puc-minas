@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @CrossOrigin
@@ -22,21 +21,21 @@ public class ShoppingCartController {
         this.repository = repository;
     }
 
-    @PostMapping("/{userId}")
-    public ResponseEntity addItemToCart(@PathVariable UUID userId, @RequestBody AddItemCartRequest request) {
-        repository.save(new ShoppingCart(userId, request.getProductId()));
+    @PostMapping("/{userNickname}")
+    public ResponseEntity addItemToCart(@PathVariable String userNickname, @RequestBody AddItemCartRequest request) {
+        repository.save(new ShoppingCart(userNickname, request.getProductId()));
 
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{userId}")
-    public List<ShoppingCartList> getAllByUSer(@PathVariable UUID userId) {
-        return repository.findAllByUserId(userId);
+    @GetMapping("/{userNickname}")
+    public List<ShoppingCartList> getAllByUSer(@PathVariable String userNickname) {
+        return repository.findAllByUserNickname(userNickname);
     }
 
-    @GetMapping("/{userId}/count")
-    public Long countByUserId(@PathVariable UUID userId) {
-        return repository.countByUserId(userId);
+    @GetMapping("/{userNickname}/count")
+    public Long countByUserNickname(@PathVariable String userNickname) {
+        return repository.countByUserNickname(userNickname);
     }
 
 }
