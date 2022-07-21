@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ProductList } from '../schema/poduct';
 import { ShoppingCartList } from '../schema/shopping-cart';
 
@@ -9,6 +10,7 @@ import { ShoppingCartList } from '../schema/shopping-cart';
 export class ShoppingCartService {
   private _storage: Storage = window.sessionStorage;
   private _storageName = 'shoppingCart';
+  private newItemAdded: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +25,8 @@ export class ShoppingCartService {
     const shoppingCartItems = this.getAll().concat(shoppingCartItem);
 
     this.set(this._storageName, shoppingCartItems);
+
+    this.newItemAdded.next(1);
   }
 
   getAll(): ShoppingCartList[] {
@@ -30,7 +34,7 @@ export class ShoppingCartService {
   }
 
   count() {
-    return this.getAll().length;
+    return this.newItemAdded.asObservable();
   }
 
   set(key: string, value: any) {
@@ -46,9 +50,13 @@ export class ShoppingCartService {
     return null;
   }
 
-  remove(key: string): boolean {
+  remove(productId: string): boolean {
     if (this._storage) {
-      this._storage.removeItem(key);
+
+      const listaAtualizada = this.getAll().filter(i => i.productId !== productId);
+
+      this.set(this._storageName, listaAtualizada);
+
       return true;
     }
     return false;

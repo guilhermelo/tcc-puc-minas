@@ -18,31 +18,33 @@ export class ShoppingCartComponent implements OnInit {
     private shoppingService: ShoppingCartService,
     private router: Router,
     private orderService: OrderService,
-    private authService: AuthService
   ) {}
 
   itemsOfCart = new Array<ShoppingCartList>();
   total = 0;
-  user: User;
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe(user => {
-      this.user = user;
-      this.itemsOfCart = this.shoppingService.getAll();
-      this.total = this.itemsOfCart.reduce((total, atual) => total + atual.price, 0);
-    })
-
+    this.loadItems();
+    this.total = this.itemsOfCart.reduce((total, atual) => total + atual.price, 0);
   }
 
-  informarEndereco() {
-    this.orderService
-      .createOrder({ userNickname: this.user.nickname })
-      .pipe(this.getIdFromLocation())
-      .pipe(this.addItemsToOrder(this.itemsOfCart))
-      .subscribe(() => {
-        this.router.navigate(['extract']);
-      });
+  private loadItems() {
+    this.itemsOfCart = this.shoppingService.getAll();
   }
+
+  prosseguirParaCriarPedido() {
+    this.router.navigate(['extract']);
+  }
+
+  // informarEndereco() {
+  //   this.orderService
+  //     .createOrder({ userNickname: this.user.nickname })
+  //     .pipe(this.getIdFromLocation())
+  //     .pipe(this.addItemsToOrder(this.itemsOfCart))
+  //     .subscribe(() => {
+  //       this.router.navigate(['extract']);
+  //     });
+  // }
 
   getIdFromLocation(): OperatorFunction<any, string> {
     return map(
@@ -68,5 +70,10 @@ export class ShoppingCartComponent implements OnInit {
 
       return forkJoin(request);
     });
+  }
+
+  remover(id: string) {
+    this.shoppingService.remove(id);
+    this.loadItems();
   }
 }

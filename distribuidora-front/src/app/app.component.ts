@@ -22,7 +22,9 @@ export class AppComponent implements OnInit {
   user: User;
 
   ngOnInit(): void {
-    this.numberOfItemsInCart = this.shoppingCart.count();
+    this.shoppingCart.count().subscribe(numero => {
+      this.numberOfItemsInCart += numero;
+    });
   }
 
   abrirCarrinho() {

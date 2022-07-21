@@ -35,8 +35,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/shopping-cart/shopping-cart.module').then(
         (m) => m.ShoppingCartModule
-      ),
-    canActivate: [AuthGuard],
+      )
   },
   {
     path: 'extract',

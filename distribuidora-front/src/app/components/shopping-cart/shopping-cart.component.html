@@ -2,7 +2,7 @@
   <mat-list-item *ngFor="let item of itemsOfCart">
     Produto: {{ item.name }} | Preço: {{ item.price }}
 
-    <button mat-icon-button (click)="remover(item.id)">
+    <button mat-icon-button (click)="remover(item.productId)">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-list-item>
@@ -11,7 +11,7 @@
 <mat-card>
   <h2>Resumo do Pedido</h2>
   <p>{{ itemsOfCart.length }} produtos R$ {{ total }}</p>
-  <button mat-stroked-button color="primary" (click)="informarEndereco()">
+  <button mat-stroked-button color="primary" (click)="prosseguirParaCriarPedido()">
     Informar endereço de entrega
   </button>
 </mat-card>
