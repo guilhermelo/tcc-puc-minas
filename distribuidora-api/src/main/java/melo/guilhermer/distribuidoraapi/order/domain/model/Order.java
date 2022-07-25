@@ -23,15 +23,24 @@ public class Order {
     @JoinColumn(name = "order_id")
     private Set<OrderItem> items;
 
+    @Embedded
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Payment payment;
+
     private Order() {
     }
 
-    public Order(String userNickname) {
+    public Order(String userNickname, Address address, Payment payment) {
         this.id = UUID.randomUUID();
         this.userNickname = userNickname;
         this.generatedAt = LocalDateTime.now();
         this.status = OrderStatus.MADE;
         this.items = new HashSet<>();
+        this.address = address;
+        this.payment = payment;
     }
 
     public UUID getId() {

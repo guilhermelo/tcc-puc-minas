@@ -4,6 +4,7 @@ import melo.guilhermer.distribuidoraapi.order.adapter.api.request.CreateOrderIte
 import melo.guilhermer.distribuidoraapi.order.adapter.api.request.CreateOrderRequest;
 import melo.guilhermer.distribuidoraapi.order.domain.model.Order;
 import melo.guilhermer.distribuidoraapi.order.domain.model.OrderItem;
+import melo.guilhermer.distribuidoraapi.order.domain.model.Payment;
 import melo.guilhermer.distribuidoraapi.order.domain.projection.OrderList;
 import melo.guilhermer.distribuidoraapi.order.domain.repository.OrderRepository;
 import melo.guilhermer.distribuidoraapi.product.domain.Product;
@@ -36,7 +37,9 @@ public class OrderController {
     @PostMapping
     public ResponseEntity create(@RequestBody CreateOrderRequest request, UriComponentsBuilder uriBuilder) {
 
-        var order = new Order(request.getUserNickname());
+        var payment = new Payment(request.getCreditCard().getName(), request.getCreditCard().getNumber(), request.getCreditCard().getCvv(), request.getCreditCard().getExpirationDate());
+
+        var order = new Order(request.getUserNickname(), request.getAddress(), payment);
 
         repository.save(order);
 

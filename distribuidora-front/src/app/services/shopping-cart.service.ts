@@ -33,8 +33,16 @@ export class ShoppingCartService {
     return this.get(this._storageName) || [];
   }
 
-  count() {
+  valorTotal(): number {
+    return this.getAll().map(i => i.price).reduce((total, i) => total + i, 0);
+  }
+
+  countAsObservable() {
     return this.newItemAdded.asObservable();
+  }
+
+  count() {
+    return this.getAll().length;
   }
 
   set(key: string, value: any) {

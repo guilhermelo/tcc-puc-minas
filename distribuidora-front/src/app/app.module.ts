@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { BarraPesquisaModule } from './components/barra-pesquisa/barra-pesquisa.module';
 import { MainComponent } from './components/main/main.component';
 import { MainModule } from './components/main/main.module';
+import { ResumoPedidoComponent } from './components/resumo-pedido/resumo-pedido.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProductService } from './services/product.service';
 
@@ -32,18 +33,12 @@ const routes: Routes = [
   },
   {
     path: 'shopping-cart',
-    loadChildren: () =>
-      import('./components/shopping-cart/shopping-cart.module').then(
-        (m) => m.ShoppingCartModule
-      )
+    loadChildren: () => import('./components/shopping-cart/shopping-cart.module').then((m) => m.ShoppingCartModule)
   },
   {
     path: 'extract',
-    loadChildren: () =>
-      import('./components/resumo-pedido/resumo-pedido.module').then(
-        (m) => m.ResumoPedidoModule
-      ),
-    canActivate: [AuthGuard],
+    loadChildren: () => import('./components/resumo-pedido/resumo-pedido.module').then((m) => m.ResumoPedidoModule),
+    canActivate: [AuthGuard]
   },
 ];
 

@@ -1,14 +1,59 @@
+<form [formGroup]="formulario" (ngSubmit)="criarPedido()" ></form>
 <p>
-  <mat-card style="width: 50%;">
+  <mat-card style="width: 50%">
     <h2>Endereço de Entrega</h2>
-    <p>Rua dos Zé Mané</p>
-    <p>Cidade - Estado</p>
-    <p>CEP: 19807-816</p>
+    <mat-form-field
+      style="width: 50vw"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Rua</mat-label>
+      <input formControlName="rua" matInput maxlength="50" />
+    </mat-form-field>
+
+    <mat-form-field
+      style="width: 50vw"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Número</mat-label>
+      <input formControlName="numero" matInput maxlength="50" />
+    </mat-form-field>
+
+    <mat-form-field
+      style="width: 50vw"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Bairro</mat-label>
+      <input formControlName="bairro" matInput maxlength="50" />
+    </mat-form-field>
+
+    <mat-form-field
+      style="width: 50vw"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Cidade</mat-label>
+      <input formControlName="cidade" matInput maxlength="50" />
+    </mat-form-field>
+
+    <mat-form-field
+      style="width: 50vw"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Estado</mat-label>
+      <input matInput maxlength="50" />
+    </mat-form-field>
   </mat-card>
-  <mat-card style="width: 50%;">
+  <mat-card style="width: 50%">
     <h3>Resumo do Pedido</h3>
-    <p>3 produtos R$ 300,00</p>
-    <p>Frete R$ 30,00</p>
+    <p>
+      {{ shoppingCartService.count() }} produtos R$
+      {{ shoppingCartService.valorTotal() }}
+    </p>
+    <p>Frete R$ {{ valorFrete }}</p>
   </mat-card>
 </p>
 <p>
@@ -22,7 +67,7 @@
           appearance="fill"
         >
           <mat-label>Nome</mat-label>
-          <input matInput maxlength="50" />
+          <input formControlName="nome" matInput maxlength="50" />
         </mat-form-field>
 
         <mat-form-field
@@ -31,7 +76,7 @@
           appearance="fill"
         >
           <mat-label>Número</mat-label>
-          <input matInput maxlength="50" />
+          <input formControlName="numeroCartao" matInput maxlength="50" />
         </mat-form-field>
         <p>
           <mat-form-field
@@ -40,7 +85,7 @@
             appearance="fill"
           >
             <mat-label>CVV</mat-label>
-            <input matInput maxlength="50" />
+            <input formControlName="cvv" matInput maxlength="50" />
           </mat-form-field>
 
           <mat-form-field
@@ -49,7 +94,7 @@
             appearance="fill"
           >
             <mat-label>Data de Expiração</mat-label>
-            <input matInput maxlength="50" />
+            <input formControlName="dataExpiracao" matInput maxlength="50" />
           </mat-form-field>
         </p>
       </div>

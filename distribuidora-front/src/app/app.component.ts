@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   user: User;
 
   ngOnInit(): void {
-    this.shoppingCart.count().subscribe(numero => {
+    this.shoppingCart.countAsObservable().subscribe(numero => {
       this.numberOfItemsInCart += numero;
     });
   }
