@@ -1,65 +1,64 @@
-<form [formGroup]="formulario" (ngSubmit)="criarPedido()" ></form>
-<p>
-  <mat-card style="width: 50%">
-    <h2>Endereço de Entrega</h2>
-    <mat-form-field
-      style="width: 50vw"
-      class="example-full-width"
-      appearance="fill"
-    >
-      <mat-label>Rua</mat-label>
-      <input formControlName="rua" matInput maxlength="50" />
-    </mat-form-field>
+<form [formGroup]="formulario">
+  <p>
+    <mat-card style="width: 50%">
+      <h2>Endereço de Entrega</h2>
+      <mat-form-field
+        style="width: 50vw"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Rua</mat-label>
+        <input formControlName="rua" matInput maxlength="50" />
+      </mat-form-field>
 
-    <mat-form-field
-      style="width: 50vw"
-      class="example-full-width"
-      appearance="fill"
-    >
-      <mat-label>Número</mat-label>
-      <input formControlName="numero" matInput maxlength="50" />
-    </mat-form-field>
+      <mat-form-field
+        style="width: 50vw"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Número</mat-label>
+        <input formControlName="numero" matInput maxlength="50" />
+      </mat-form-field>
 
-    <mat-form-field
-      style="width: 50vw"
-      class="example-full-width"
-      appearance="fill"
-    >
-      <mat-label>Bairro</mat-label>
-      <input formControlName="bairro" matInput maxlength="50" />
-    </mat-form-field>
+      <mat-form-field
+        style="width: 50vw"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Bairro</mat-label>
+        <input formControlName="bairro" matInput maxlength="50" />
+      </mat-form-field>
 
-    <mat-form-field
-      style="width: 50vw"
-      class="example-full-width"
-      appearance="fill"
-    >
-      <mat-label>Cidade</mat-label>
-      <input formControlName="cidade" matInput maxlength="50" />
-    </mat-form-field>
+      <mat-form-field
+        style="width: 50vw"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Cidade</mat-label>
+        <input formControlName="cidade" matInput maxlength="50" />
+      </mat-form-field>
 
-    <mat-form-field
-      style="width: 50vw"
-      class="example-full-width"
-      appearance="fill"
-    >
-      <mat-label>Estado</mat-label>
-      <input matInput maxlength="50" />
-    </mat-form-field>
-  </mat-card>
-  <mat-card style="width: 50%">
-    <h3>Resumo do Pedido</h3>
-    <p>
-      {{ shoppingCartService.count() }} produtos R$
-      {{ shoppingCartService.valorTotal() }}
-    </p>
-    <p>Frete R$ {{ valorFrete }}</p>
-  </mat-card>
-</p>
-<p>
-  <mat-card>
-    <h2>Cartão de Crédito</h2>
-    <form class="pesquisar">
+      <mat-form-field
+        style="width: 50vw"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Estado</mat-label>
+        <input formControlName="estado" matInput maxlength="50" />
+      </mat-form-field>
+    </mat-card>
+    <mat-card style="width: 50%">
+      <h3>Resumo do Pedido</h3>
+      <p>
+        {{ shoppingCartService.count() }} produtos R$
+        {{ shoppingCartService.valorTotal() }}
+      </p>
+      <p>Frete R$ {{ valorFrete }}</p>
+    </mat-card>
+  </p>
+  <p>
+    <mat-card>
+      <h2>Cartão de Crédito</h2>
       <div class="example-container">
         <mat-form-field
           style="width: 50vw"
@@ -98,9 +97,16 @@
           </mat-form-field>
         </p>
       </div>
-    </form>
-  </mat-card>
-</p>
-<p>
-  <button mat-stroked-button color="primary">Finalizar</button>
-</p>
+      <p>
+        <button
+          mat-stroked-button
+          type="button"
+          color="primary"
+          (click)="criarPedido()"
+        >
+          Finalizar
+        </button>
+      </p>
+    </mat-card>
+  </p>
+</form>

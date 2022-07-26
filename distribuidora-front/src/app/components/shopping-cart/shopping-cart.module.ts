@@ -22,8 +22,7 @@ import { MatIconModule } from "@angular/material/icon";
   ],
   exports: [
     ShoppingCartComponent
-  ],
-  providers: [OrderService]
+  ]
 })
 export class ShoppingCartModule {
 }

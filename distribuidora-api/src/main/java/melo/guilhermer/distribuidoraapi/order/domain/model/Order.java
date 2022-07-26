@@ -13,7 +13,9 @@ public class Order {
 
     @Id
     private UUID id;
+
     private LocalDateTime generatedAt;
+
     private String userNickname;
 
     @Enumerated(EnumType.STRING)

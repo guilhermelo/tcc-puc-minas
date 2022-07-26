@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { BarraPesquisaModule } from './components/barra-pesquisa/barra-pesquisa.module';
 import { MainComponent } from './components/main/main.component';
 import { MainModule } from './components/main/main.module';
-import { ResumoPedidoComponent } from './components/resumo-pedido/resumo-pedido.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProductService } from './services/product.service';
 

@@ -17,7 +17,6 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private shoppingService: ShoppingCartService,
     private router: Router,
-    private orderService: OrderService,
   ) {}
 
   itemsOfCart = new Array<ShoppingCartList>();
@@ -34,42 +33,6 @@ export class ShoppingCartComponent implements OnInit {
 
   prosseguirParaCriarPedido() {
     this.router.navigate(['extract']);
-  }
-
-  // informarEndereco() {
-  //   this.orderService
-  //     .createOrder({ userNickname: this.user.nickname })
-  //     .pipe(this.getIdFromLocation())
-  //     .pipe(this.addItemsToOrder(this.itemsOfCart))
-  //     .subscribe(() => {
-  //       this.router.navigate(['extract']);
-  //     });
-  // }
-
-  getIdFromLocation(): OperatorFunction<any, string> {
-    return map(
-      (response: HttpResponse<any>) =>
-        response.headers.get('Location')?.split('/').pop() || ''
-    );
-  }
-
-  addItemsToOrder(itemsOfCart: ShoppingCartList[]) {
-    return switchMap((id: string) => {
-      console.log(id);
-      let request = [];
-
-      for (let item of itemsOfCart) {
-        request.push(
-          this.orderService.createOrderItem(id, {
-            productId: item.productId,
-            observation: 'Observação',
-            quantity: 100,
-          })
-        );
-      }
-
-      return forkJoin(request);
-    });
   }
 
   remover(id: string) {

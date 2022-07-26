@@ -19,8 +19,10 @@ export class MainComponent implements OnInit {
 
   products = new Array<ProductList>();
   user: User;
+  breakpoint: number;
 
   ngOnInit(): void {
+    this.onResize(null);
     this.authService.user$.subscribe(user => {
       this.user = user;
     });
@@ -33,5 +35,25 @@ export class MainComponent implements OnInit {
   public adicionarCarrinho(product: ProductList) {
     this.shoppingCartService
       .addItemToCart(product);
+  }
+
+  onResize(event: any) {
+    const tamanhoTela = window.innerWidth;
+
+    console.log('Tamanho de tela: ' + tamanhoTela);
+
+    if(tamanhoTela <= 400) {
+      this.breakpoint = 1;
+    } else if(tamanhoTela > 400 && tamanhoTela <= 600) {
+      this.breakpoint = 2;
+    } else if(tamanhoTela > 600 && tamanhoTela <= 800) {
+      this.breakpoint = 3;
+    } else if(tamanhoTela > 800 && tamanhoTela < 1000) {
+      this.breakpoint = 4;
+    } else {
+      this.breakpoint = 6;
+    }
+
+    console.log('colunas: ' + this.breakpoint);
   }
 }

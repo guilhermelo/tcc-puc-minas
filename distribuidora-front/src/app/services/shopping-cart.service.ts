@@ -11,6 +11,7 @@ export class ShoppingCartService {
   private _storage: Storage = window.sessionStorage;
   private _storageName = 'shoppingCart';
   private newItemAdded: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private shoppingCartZerado: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {}
 
@@ -72,9 +73,18 @@ export class ShoppingCartService {
 
   clear(): boolean {
     if (this._storage) {
-      this._storage.clear();
+      this._storage.removeItem(this._storageName);
+      this.zerar();
       return true;
     }
     return false;
+  }
+
+  private zerar() {
+    this.shoppingCartZerado.next(0);
+  }
+
+  zerarContador() {
+    return this.shoppingCartZerado.asObservable();
   }
 }

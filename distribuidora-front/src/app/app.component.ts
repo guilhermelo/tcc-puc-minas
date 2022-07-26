@@ -22,12 +22,23 @@ export class AppComponent implements OnInit {
   user: User;
 
   ngOnInit(): void {
+
+    this.numberOfItemsInCart = this.shoppingCart.count();
+
     this.shoppingCart.countAsObservable().subscribe(numero => {
       this.numberOfItemsInCart += numero;
+    });
+
+    this.shoppingCart.zerarContador().subscribe(n => {
+      this.numberOfItemsInCart = 0;
     });
   }
 
   abrirCarrinho() {
     this.router.navigate(['shopping-cart']);
+  }
+
+  acessarMeusPedidos() {
+    this.router.navigate(['my-orders']);
   }
 }

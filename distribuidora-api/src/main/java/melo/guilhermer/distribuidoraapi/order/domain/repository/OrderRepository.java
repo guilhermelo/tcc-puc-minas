@@ -14,5 +14,7 @@ public interface OrderRepository extends Repository<Order, UUID> {
 
     Slice<OrderList> findAll(Pageable pageable);
 
+    Slice<OrderList> findAllByUserNickname(String userNickname, Pageable pageable);
+
     Optional<Order> findById(UUID orderId);
 }

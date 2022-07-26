@@ -50,7 +50,7 @@ public class OrderController {
 
     @GetMapping("/{userNickname}")
     public List<OrderList> getAll(@PathVariable String userNickname, Pageable pageable) {
-        return repository.findAll(pageable).getContent();
+        return repository.findAllByUserNickname(userNickname, pageable).getContent();
     }
 
     @PostMapping("/{orderId}/items")

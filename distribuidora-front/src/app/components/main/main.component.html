@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" gutterSize="20" rowHeight="1:1">
+<mat-grid-list [cols]="breakpoint" gutterSize="5px" rowHeight="400px" (window:resize)="onResize($event)">
   <mat-grid-tile *ngFor="let product of products">
     <mat-card [style]="'max-width: 400px'">
       <mat-card-header>
