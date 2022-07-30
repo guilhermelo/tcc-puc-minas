@@ -1,0 +1,8 @@
+<div *ngFor="let order of orders">
+  <ol>
+    <li>Situação: {{ order.status | orderState }}</li>
+    <li>Pedido realizado em: {{ order.generatedAt | date: "dd/MM/yyyy" }}</li>
+    <button mat-stroked-button color="primary" (click)="abrirDetalhePedido(order.id)">Ver detalhes</button>
+  </ol>
+  <hr />
+</div>

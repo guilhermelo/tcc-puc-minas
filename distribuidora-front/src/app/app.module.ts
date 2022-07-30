@@ -13,6 +13,7 @@ import { MainComponent } from './components/main/main.component';
 import { MainModule } from './components/main/main.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProductService } from './services/product.service';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
 const authConfiguration: AuthConfig = {
   domain: 'dev-ail8x0n8.us.auth0.com',
@@ -39,6 +40,11 @@ const routes: Routes = [
     loadChildren: () => import('./components/resumo-pedido/resumo-pedido.module').then((m) => m.ResumoPedidoModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'my-orders',
+    loadChildren: () => import('./components/order/order.module').then(m => m.OrderModule),
+    canActivate: [AuthGuard]
+  }
 ];
 
 

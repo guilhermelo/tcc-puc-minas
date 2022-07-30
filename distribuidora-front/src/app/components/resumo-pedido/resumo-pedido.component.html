@@ -1,53 +1,63 @@
-<form [formGroup]="formulario">
-  <p>
-    <mat-card style="width: 50%">
-      <h2>Endereço de Entrega</h2>
-      <mat-form-field
-        style="width: 50vw"
-        class="example-full-width"
-        appearance="fill"
-      >
-        <mat-label>Rua</mat-label>
-        <input formControlName="rua" matInput maxlength="50" />
-      </mat-form-field>
+<div class="container" fxLayout="column">
+  <h1>Finalização de Compra</h1>
+    <form [formGroup]="formulario">
+      <mat-card>
+        <div fxLayout="column">
+          <h2>Endereço de Entrega</h2>
+          <div fxFlex="100" fxLayout="row" fxLayoutGap="0.5%">
+            <mat-form-field appearance="fill">
+              <mat-label>Rua</mat-label>
+              <input formControlName="rua" matInput maxlength="50" />
+            </mat-form-field>
 
-      <mat-form-field
-        style="width: 50vw"
-        class="example-full-width"
-        appearance="fill"
-      >
-        <mat-label>Número</mat-label>
-        <input formControlName="numero" matInput maxlength="50" />
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Número</mat-label>
+              <input formControlName="numero" matInput maxlength="50" />
+            </mat-form-field>
 
-      <mat-form-field
-        style="width: 50vw"
-        class="example-full-width"
-        appearance="fill"
-      >
-        <mat-label>Bairro</mat-label>
-        <input formControlName="bairro" matInput maxlength="50" />
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Bairro</mat-label>
+              <input formControlName="bairro" matInput maxlength="50" />
+            </mat-form-field>
 
-      <mat-form-field
-        style="width: 50vw"
-        class="example-full-width"
-        appearance="fill"
-      >
-        <mat-label>Cidade</mat-label>
-        <input formControlName="cidade" matInput maxlength="50" />
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Cidade</mat-label>
+              <input formControlName="cidade" matInput maxlength="50" />
+            </mat-form-field>
 
-      <mat-form-field
-        style="width: 50vw"
-        class="example-full-width"
-        appearance="fill"
-      >
-        <mat-label>Estado</mat-label>
-        <input formControlName="estado" matInput maxlength="50" />
-      </mat-form-field>
-    </mat-card>
-    <mat-card style="width: 50%">
+            <mat-form-field appearance="fill">
+              <mat-label>Estado</mat-label>
+              <input formControlName="estado" matInput maxlength="50" />
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card fxLayout="column">
+        <h2>Cartão de Crédito</h2>
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="0.5%">
+          <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input formControlName="nome" matInput maxlength="50" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Número</mat-label>
+            <input formControlName="numeroCartao" matInput maxlength="50" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>CVV</mat-label>
+            <input formControlName="cvv" matInput maxlength="50" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Data de Expiração</mat-label>
+            <input formControlName="dataExpiracao" matInput maxlength="50" />
+          </mat-form-field>
+        </div>
+      </mat-card>
+    </form>
+
+    <mat-card fxFlex="100%">
       <h3>Resumo do Pedido</h3>
       <p>
         {{ shoppingCartService.count() }} produtos R$
@@ -55,58 +65,17 @@
       </p>
       <p>Frete R$ {{ valorFrete }}</p>
     </mat-card>
-  </p>
-  <p>
-    <mat-card>
-      <h2>Cartão de Crédito</h2>
-      <div class="example-container">
-        <mat-form-field
-          style="width: 50vw"
-          class="example-full-width"
-          appearance="fill"
-        >
-          <mat-label>Nome</mat-label>
-          <input formControlName="nome" matInput maxlength="50" />
-        </mat-form-field>
 
-        <mat-form-field
-          style="width: 50vw"
-          class="example-full-width"
-          appearance="fill"
-        >
-          <mat-label>Número</mat-label>
-          <input formControlName="numeroCartao" matInput maxlength="50" />
-        </mat-form-field>
-        <p>
-          <mat-form-field
-            style="width: 25vw"
-            class="example-full-width"
-            appearance="fill"
-          >
-            <mat-label>CVV</mat-label>
-            <input formControlName="cvv" matInput maxlength="50" />
-          </mat-form-field>
-
-          <mat-form-field
-            style="width: 25vw"
-            class="example-full-width"
-            appearance="fill"
-          >
-            <mat-label>Data de Expiração</mat-label>
-            <input formControlName="dataExpiracao" matInput maxlength="50" />
-          </mat-form-field>
-        </p>
-      </div>
-      <p>
-        <button
-          mat-stroked-button
-          type="button"
-          color="primary"
-          (click)="criarPedido()"
-        >
-          Finalizar
-        </button>
-      </p>
-    </mat-card>
-  </p>
-</form>
+    <p>
+      <button
+        fxFlex="20"
+        fxLayoutAlign="center"
+        mat-stroked-button
+        type="button"
+        color="primary"
+        (click)="criarPedido()"
+      >
+        Finalizar
+      </button>
+    </p>
+</div>

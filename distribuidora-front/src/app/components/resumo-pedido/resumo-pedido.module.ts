@@ -1,5 +1,6 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +20,8 @@ import { ResumoRoutingModule } from './resumo.routing';
     MatInputModule,
     ResumoRoutingModule,
     MatButtonModule,
+    FlexModule,
+    FlexLayoutModule
   ],
   declarations: [ResumoPedidoComponent],
   exports: [ResumoPedidoComponent],
