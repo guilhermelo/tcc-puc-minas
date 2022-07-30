@@ -1,17 +1,43 @@
-<mat-action-list>
-  <mat-list-item *ngFor="let item of itemsOfCart">
-    Produto: {{ item.name }} | Preço: {{ item.price }}
+<div class="cart-container">
+  <div class="Header">
+    <h3 class="Heading">Carrinho de Compras</h3>
+    <h5 class="remove"><u>Remover todos</u></h5>
+  </div>
 
-    <button mat-icon-button (click)="remover(item.productId)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-list-item>
-</mat-action-list>
-
-<mat-card>
-  <h2>Resumo do Pedido</h2>
-  <p>{{ itemsOfCart.length }} produtos R$ {{ total }}</p>
-  <button mat-stroked-button color="primary" (click)="prosseguirParaCriarPedido()">
-    Informar dados do pedido
-  </button>
-</mat-card>
+  <div class="Cart-Items" *ngFor="let item of itemsOfCart">
+    <div class="image-box">
+      <img
+        [src]="item.imageUrl"
+        style="height: 120px"
+      />
+    </div>
+    <div class="about">
+      <h4 class="title">{{ item.name }}</h4>
+      <!-- <h3 class="subtitle">250ml</h3> -->
+      <!-- <img
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        style="height: 30px"
+      /> -->
+    </div>
+    <div class="counter">
+      <div class="btn">-</div>
+      <div class="count">2</div>
+      <div class="btn">+</div>
+    </div>
+    <div class="prices">
+      <div class="amount">{{ item.price }}</div>
+      <div class="remove" (click)="remover(item.productId)"><u>Remover</u></div>
+    </div>
+  </div>
+  <hr />
+  <div class="checkout">
+    <div class="total">
+      <div>
+        <div class="Subtotal">Total</div>
+        <div class="items"> {{ itemsOfCart.length }} itens</div>
+      </div>
+      <div class="total-amount"> {{ total }} </div>
+    </div>
+    <button mat-stroked-button class="button" color="primary">Checkout</button>
+  </div>
+</div>

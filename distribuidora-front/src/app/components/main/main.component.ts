@@ -33,14 +33,11 @@ export class MainComponent implements OnInit {
   }
 
   public adicionarCarrinho(product: ProductList) {
-    this.shoppingCartService
-      .addItemToCart(product);
+    this.shoppingCartService.addItemToCart(product);
   }
 
   onResize(event: any) {
     const tamanhoTela = window.innerWidth;
-
-    console.log('Tamanho de tela: ' + tamanhoTela);
 
     if(tamanhoTela <= 400) {
       this.breakpoint = 1;
@@ -53,7 +50,5 @@ export class MainComponent implements OnInit {
     } else {
       this.breakpoint = 6;
     }
-
-    console.log('colunas: ' + this.breakpoint);
   }
 }

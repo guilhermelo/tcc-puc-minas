@@ -73,7 +73,6 @@ export class ResumoPedidoComponent implements OnInit {
       .createOrder(request)
       .pipe(this.addItemsToOrder(this.itemsOfCart()))
       .subscribe((value) => {
-        console.log('Acabou fera!');
         this.shoppingCartService.clear();
         this.router.navigate(['']);
       });
