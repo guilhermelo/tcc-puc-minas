@@ -36,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/shopping-cart/shopping-cart.module').then((m) => m.ShoppingCartModule)
   },
   {
-    path: 'extract',
+    path: 'checkout',
     loadChildren: () => import('./components/resumo-pedido/resumo-pedido.module').then((m) => m.ResumoPedidoModule),
     canActivate: [AuthGuard]
   },

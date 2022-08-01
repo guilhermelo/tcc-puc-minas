@@ -1,8 +1,16 @@
-<div *ngFor="let order of orders">
-  <ol>
-    <li>Situação: {{ order.status | orderState }}</li>
-    <li>Pedido realizado em: {{ order.generatedAt | date: "dd/MM/yyyy" }}</li>
-    <button mat-stroked-button color="primary" (click)="abrirDetalhePedido(order.id)">Ver detalhes</button>
-  </ol>
-  <hr />
+<h2>Meus Pedidos</h2>
+<div class="orders" *ngFor="let order of orders">
+  <div class="order">
+    <h3>
+      Número do Pedido:
+      <span style="color: #696969">4447ca2bf8c1421ebca8a6f43b6e86d6</span>
+    </h3>
+    <ol>
+      <li>Situação: {{ order.status | orderState }}</li>
+      <li>Pedido realizado em: {{ order.generatedAt | date: "dd/MM/yyyy" }}</li>
+      <li>
+        <a (click)="abrirDetalhePedido(order.id)"><u>Ver detalhes</u></a>
+      </li>
+    </ol>
+  </div>
 </div>

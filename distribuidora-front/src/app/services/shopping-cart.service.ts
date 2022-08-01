@@ -21,7 +21,7 @@ export class ShoppingCartService {
       productId: product.id,
       name: product.name,
       price: product.price,
-      imageUrl: 'https://material.angular.io/assets/img/examples/shiba2.jpg'
+      imageUrl: 'https://www.imigrantesbebidas.com.br/bebida/images/products/full/222-cerveja-heineken-long-neck-330ml.jpg'
     }
 
     const shoppingCartItems = this.getAll().concat(shoppingCartItem);

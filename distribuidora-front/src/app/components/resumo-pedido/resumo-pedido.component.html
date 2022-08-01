@@ -1,81 +1,116 @@
 <div class="container" fxLayout="column">
   <h1>Finalização de Compra</h1>
-    <form [formGroup]="formulario">
-      <mat-card>
-        <div fxLayout="column">
-          <h2>Endereço de Entrega</h2>
-          <div fxFlex="100" fxLayout="row" fxLayoutGap="0.5%">
-            <mat-form-field appearance="fill">
-              <mat-label>Rua</mat-label>
-              <input formControlName="rua" matInput maxlength="50" />
-            </mat-form-field>
+  <form [formGroup]="formulario" fxLayout="row" fxLayout.sm="column" fxLayout.lt-sm="column">
+    <mat-card fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
+      <h2>Endereço de Entrega</h2>
+      <div fxLayout="column" fxLayoutGap="0.5%">
+        <mat-form-field appearance="fill">
+          <mat-label>Rua</mat-label>
+          <input formControlName="rua" matInput maxlength="50" />
+        </mat-form-field>
 
-            <mat-form-field appearance="fill">
-              <mat-label>Número</mat-label>
-              <input formControlName="numero" matInput maxlength="50" />
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Bairro</mat-label>
-              <input formControlName="bairro" matInput maxlength="50" />
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Cidade</mat-label>
-              <input formControlName="cidade" matInput maxlength="50" />
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Estado</mat-label>
-              <input formControlName="estado" matInput maxlength="50" />
-            </mat-form-field>
-          </div>
-        </div>
-      </mat-card>
-      <mat-card fxLayout="column">
-        <h2>Cartão de Crédito</h2>
-        <div fxFlex="100" fxLayout="row" fxLayoutGap="0.5%">
-          <mat-form-field appearance="fill">
-            <mat-label>Nome</mat-label>
-            <input formControlName="nome" matInput maxlength="50" />
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
+        <div fxLayout="row" fxLayoutGap="0.5%">
+          <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>Número</mat-label>
-            <input formControlName="numeroCartao" matInput maxlength="50" />
+            <input formControlName="numero" matInput maxlength="50" />
           </mat-form-field>
-          <mat-form-field appearance="fill">
+
+          <mat-form-field fxFlex="50" appearance="fill">
+            <mat-label>Bairro</mat-label>
+            <input formControlName="bairro" matInput maxlength="50" />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.lt-sm="column" fxLayout fxLayoutGap="0.5%">
+          <mat-form-field fxFlex="50" appearance="fill">
+            <mat-label>Cidade</mat-label>
+            <input formControlName="cidade" matInput maxlength="50" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50" appearance="fill">
+            <mat-label>Estado</mat-label>
+            <input formControlName="estado" matInput maxlength="50" />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
+      <h2>Cartão de Crédito</h2>
+      <div fxFlex="100" fxLayout="column" fxLayoutGap="0.5%">
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input formControlName="nome" matInput maxlength="50" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Número</mat-label>
+          <input formControlName="numeroCartao" matInput maxlength="50" />
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="0.5%">
+          <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>CVV</mat-label>
             <input formControlName="cvv" matInput maxlength="50" />
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>Data de Expiração</mat-label>
             <input formControlName="dataExpiracao" matInput maxlength="50" />
           </mat-form-field>
         </div>
-      </mat-card>
-    </form>
-
-    <mat-card fxFlex="100%">
-      <h3>Resumo do Pedido</h3>
-      <p>
-        {{ shoppingCartService.count() }} produtos R$
-        {{ shoppingCartService.valorTotal() }}
-      </p>
-      <p>Frete R$ {{ valorFrete }}</p>
+      </div>
     </mat-card>
+  </form>
 
-    <p>
-      <button
-        fxFlex="20"
-        fxLayoutAlign="center"
-        mat-stroked-button
-        type="button"
-        color="primary"
-        (click)="criarPedido()"
-      >
-        Finalizar
-      </button>
-    </p>
+  <mat-card fxFlex="100%">
+    <h3>Resumo do Pedido</h3>
+    <div class="Cart-Items" *ngFor="let item of itens">
+      <div class="image-box">
+        <img [src]="item.imageUrl" style="height: 120px" />
+      </div>
+      <div class="about">
+        <h4 class="title">{{ item.name }}</h4>
+        <!-- <h3 class="subtitle">250ml</h3> -->
+        <!-- <img
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        style="height: 30px"
+      /> -->
+      </div>
+      <div class="counter">
+        <div class="btn">-</div>
+        <div class="count">2</div>
+        <div class="btn">+</div>
+      </div>
+      <div class="prices">
+        <div class="amount">{{ item.price }}</div>
+        <div class="remove" (click)="remover(item.productId)">
+          <u>Remover</u>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout">
+      <div class="total">
+        <div>
+          <div class="Subtotal">Total</div>
+          <div class="items"> {{ itens.length }} itens</div>
+        </div>
+        <div class="Subtotal">{{ shoppingCartService.valorTotal() }}</div>
+        <div class="Subtotal">Frete: R$ {{ valorFrete }} </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <p>
+    <button
+      style="margin-top: 1%; margin-left: 10%;"
+      fxFlex="10"
+      fxLayoutAlign="center"
+      mat-stroked-button
+      type="button"
+      color="primary"
+      (click)="criarPedido()"
+    >
+      Finalizar
+    </button>
+  </p>
 </div>

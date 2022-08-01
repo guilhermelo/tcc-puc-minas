@@ -19,6 +19,8 @@ export class ResumoPedidoComponent implements OnInit {
   formulario: FormGroup;
   user: User;
 
+  itens: ShoppingCartList[] = [];
+
   constructor(
     private router: Router,
     public formBuilder: FormBuilder,
@@ -28,6 +30,9 @@ export class ResumoPedidoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.itens = this.shoppingCartService.getAll();
+
     this.formulario = this.formBuilder.group({
       rua: ['', Validators.required],
       numero: ['', Validators.required],
@@ -71,15 +76,11 @@ export class ResumoPedidoComponent implements OnInit {
 
     this.orderService
       .createOrder(request)
-      .pipe(this.addItemsToOrder(this.itemsOfCart()))
+      .pipe(this.addItemsToOrder(this.itens))
       .subscribe((value) => {
         this.shoppingCartService.clear();
         this.router.navigate(['']);
       });
-  }
-
-  itemsOfCart() {
-    return this.shoppingCartService.getAll();
   }
 
   addItemsToOrder(itemsOfCart: ShoppingCartList[]) {

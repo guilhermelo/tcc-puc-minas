@@ -32,7 +32,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   prosseguirParaCriarPedido() {
-    this.router.navigate(['extract']);
+    this.router.navigate(['checkout']);
   }
 
   remover(id: string) {
