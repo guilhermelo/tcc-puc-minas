@@ -1,6 +1,6 @@
 <form class="pesquisar">
   <mat-form-field style="width:50vw" class="example-full-width" appearance="fill">
     <mat-label>Pesquisar</mat-label>
-    <input matInput maxlength="50" placeholder="Coca-Cola..." (keydown.enter)="pesquisar($event)">
+    <input #pesquisa matInput maxlength="50" placeholder="Coca-Cola..." (keydown.enter)="pesquisar(pesquisa)">
   </mat-form-field>
 </form>

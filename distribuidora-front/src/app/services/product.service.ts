@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ProductList } from '../schema/poduct';
 import { AuthService } from '@auth0/auth0-angular';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -10,15 +10,12 @@ export class ProductService {
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  listAllProducts() {
-    return this.http.get<Array<ProductList>>(`${this.url}/products`);
+  listAllProducts(termoPesquisa: string) {
 
-    // return this.auth.getAccessTokenSilently().pipe(switchMap(accessToken => {
-    //   let headers = new HttpHeaders();
+    let params = new HttpParams();
 
-    //   headers = headers.set('Authorization', 'Bearer ' + accessToken);
+    params = params.append('search', termoPesquisa);
 
-    //   return this.http.get<Array<ProductList>>(`${this.url}/products`, { headers })
-    // }));
+    return this.http.get<Array<ProductList>>(`${this.url}/products`, { params });
   }
 }
