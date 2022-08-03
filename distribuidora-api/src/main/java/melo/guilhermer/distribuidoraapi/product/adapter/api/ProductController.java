@@ -25,7 +25,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductList> findAll(Pageable pageable) {
+    public List<ProductList> findAll(Pageable pageable, @RequestParam(name = "search", defaultValue = "") String search) {
+
+        if(!"".equals(search)) {
+            return repository.findByNameContainingIgnoreCase(pageable, search).getContent();
+        }
+
         return repository.findAll(pageable).getContent();
     }
 

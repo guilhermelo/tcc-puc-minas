@@ -14,6 +14,8 @@ public class Order {
     @Id
     private UUID id;
 
+    private String identifier;
+
     private LocalDateTime generatedAt;
 
     private String userNickname;
@@ -43,6 +45,7 @@ public class Order {
         this.items = new HashSet<>();
         this.address = address;
         this.payment = payment;
+        this.identifier = id.toString().replace("-", "");
     }
 
     public UUID getId() {

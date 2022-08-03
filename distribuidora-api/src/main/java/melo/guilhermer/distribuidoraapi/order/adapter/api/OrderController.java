@@ -5,12 +5,13 @@ import melo.guilhermer.distribuidoraapi.order.adapter.api.request.CreateOrderReq
 import melo.guilhermer.distribuidoraapi.order.domain.model.Order;
 import melo.guilhermer.distribuidoraapi.order.domain.model.OrderItem;
 import melo.guilhermer.distribuidoraapi.order.domain.model.Payment;
+import melo.guilhermer.distribuidoraapi.order.domain.projection.OrderItemList;
 import melo.guilhermer.distribuidoraapi.order.domain.projection.OrderList;
+import melo.guilhermer.distribuidoraapi.order.domain.repository.OrderItemRepository;
 import melo.guilhermer.distribuidoraapi.order.domain.repository.OrderRepository;
 import melo.guilhermer.distribuidoraapi.product.domain.Product;
 import melo.guilhermer.distribuidoraapi.product.domain.repository.ProductRepository;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +29,12 @@ public class OrderController {
 
     private final OrderRepository repository;
     private final ProductRepository productRepository;
+    private final OrderItemRepository orderItemRepository;
 
-    public OrderController(OrderRepository repository, ProductRepository productRepository) {
+    public OrderController(OrderRepository repository, ProductRepository productRepository, OrderItemRepository orderItemRepository) {
         this.repository = repository;
         this.productRepository = productRepository;
+        this.orderItemRepository = orderItemRepository;
     }
 
     @PostMapping
@@ -70,5 +73,10 @@ public class OrderController {
         URI uri = uriBuilder.path("/orders/{id}/items/{}").buildAndExpand(order.getId().toString(), UUID.randomUUID().toString()).toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping("/{orderId}/items")
+    public List<OrderItemList> findItemsByOrderId(@PathVariable UUID orderId) {
+        return orderItemRepository.findAllByOrderId(orderId);
     }
 }

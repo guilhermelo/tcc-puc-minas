@@ -16,4 +16,6 @@ public interface ProductRepository extends Repository<Product, UUID> {
     Slice<ProductList> findAll(Pageable pageable);
 
     Optional<Product> findById(UUID id);
+
+    Slice<ProductList> findByNameContainingIgnoreCase(Pageable pageable, String search);
 }

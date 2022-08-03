@@ -7,7 +7,7 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 import java.util.UUID;
 
-public interface OrdeItemRepository extends Repository<OrderItemQuery, UUID> {
+public interface OrderItemRepository extends Repository<OrderItemQuery, UUID> {
 
     List<OrderItemList> findAllByOrderId(UUID orderId);
 
