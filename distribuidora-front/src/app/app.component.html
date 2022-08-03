@@ -1,37 +1,104 @@
-<p>
+<div>
   <mat-toolbar [style.background-color]="'#82846D'">
-    <span class="title" routerLink="/">Distribuidora de Produtos</span>
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon style="color: white">menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="title" routerLink="/">
+      <span>Distribuidora de Produtos</span>
+    </a>
     <span class="example-spacer"></span>
-    <span class="title" style="color: #fff" routerLink="/my-orders" (click)="acessarMeusPedidos()">Meus pedidos</span>
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-      (click)="abrirCarrinho()"
-    >
-      <mat-icon
-        [matBadge]="numberOfItemsInCart"
-        matBadgeColor="warn"
-        style="color: white"
-        >shopping_cart_checkout</mat-icon
+    <div fxShow="true" fxHide.lt-md="true">
+      <span
+        class="title"
+        style="color: #fff"
+        routerLink="/my-orders"
+        (click)="acessarMeusPedidos()"
+        >Meus pedidos</span
       >
-    </button>
-    <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
       <button
         mat-icon-button
-        (click)="auth.logout({ returnTo: document.location.origin })"
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+        (click)="abrirCarrinho()"
       >
-        <mat-icon style="color: white">logout</mat-icon>
+        <mat-icon
+          [matBadge]="numberOfItemsInCart"
+          matBadgeColor="warn"
+          style="color: white"
+          >shopping_cart_checkout</mat-icon
+        >
       </button>
-    </ng-container>
+      <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <button
+          mat-icon-button
+          (click)="auth.logout({ returnTo: document.location.origin })"
+        >
+          <mat-icon style="color: white">logout</mat-icon>
+        </button>
+      </ng-container>
 
-    <ng-template #loggedOut>
-      <button mat-icon-button (click)="auth.loginWithRedirect()">
-        <mat-icon style="color: white">login</mat-icon>
-      </button>
-    </ng-template>
+      <ng-template #loggedOut>
+        <button mat-icon-button (click)="auth.loginWithRedirect()">
+          <mat-icon style="color: white">login</mat-icon>
+        </button>
+      </ng-template>
+    </div>
   </mat-toolbar>
-</p>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav
+      [style.background-color]="'#82846D'"
+      color="primary"
+      #sidenav
+      fxLayout="column"
+      mode="over"
+      opened="false"
+      fxHide.gt-sm="true"
+    >
+      <div fxLayout="column" class="navbar-items-menu">
+        <span
+          class="title"
+          style="color: #fff; margin-top: 10px;"
+          routerLink="/my-orders"
+          (click)="acessarMeusPedidos()"
+          >Meus pedidos</span
+        >
+        <button
+          mat-icon-button
+          style="margin-top: 10px;"
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+          (click)="abrirCarrinho()"
+        >
+          <mat-icon
+            [matBadge]="numberOfItemsInCart"
+            matBadgeColor="warn"
+            style="color: white; margin-top: 10px;"
+            >shopping_cart_checkout</mat-icon
+          >
+        </button>
+        <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+          <button
+            mat-icon-button
+            (click)="auth.logout({ returnTo: document.location.origin })"
+          >
+            <mat-icon style="color: white">logout</mat-icon>
+          </button>
+        </ng-container>
 
-<barra-pesquisa></barra-pesquisa>
-<router-outlet></router-outlet>
+        <ng-template #loggedOut>
+          <button mat-icon-button (click)="auth.loginWithRedirect()">
+            <mat-icon style="color: white">login</mat-icon>
+          </button>
+        </ng-template>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <barra-pesquisa></barra-pesquisa>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

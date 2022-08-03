@@ -1,23 +1,39 @@
-<mat-grid-list [cols]="breakpoint" gutterSize="5px" rowHeight="400px" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let product of products">
-    <mat-card [style]="'max-width: 400px'">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-      </mat-card-header>
-      <img
-        mat-card-md-image
-        src="https://www.imigrantesbebidas.com.br/bebida/images/products/full/222-cerveja-heineken-long-neck-330ml.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content>
-        <p>Descrição do produto</p>
-        <p>{{ product.price }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-stroked-button color="primary" mat-button (click)="adicionarCarrinho(product)">
-          Comprar
-        </button>
-      </mat-card-actions>
-    </mat-card>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex.xs="100%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" fxFlex.lg="25%" fxFlex.xl="20%" *ngFor="let product of products">
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>{{ product.name }}</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-md-image
+          src="https://www.imigrantesbebidas.com.br/bebida/images/products/full/222-cerveja-heineken-long-neck-330ml.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <p>
+            Descrição do produto bem grande para a gente ver como fica no layout
+            essa bagaceira doida
+          </p>
+          <p>{{ product.price }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="primary"
+            mat-button
+            (click)="adicionarCarrinho(product)"
+          >
+            Comprar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<!-- <mat-grid-list [cols]="breakpoint" gutterSize="5px" rowHeight="400px" (window:resize)="onResize($event)">
+  <mat-grid-tile >
+
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->

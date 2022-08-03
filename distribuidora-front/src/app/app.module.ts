@@ -14,6 +14,7 @@ import { MainModule } from './components/main/main.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProductService } from './services/product.service';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const authConfiguration: AuthConfig = {
   domain: 'dev-ail8x0n8.us.auth0.com',
@@ -22,31 +23,37 @@ const authConfiguration: AuthConfig = {
   scope: 'openid profile',
   audience: 'http://localhost:8080',
   httpInterceptor: {
-    allowedList: ['/api/*']
-  }
+    allowedList: ['/api/*'],
+  },
 };
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
   },
   {
     path: 'shopping-cart',
-    loadChildren: () => import('./components/shopping-cart/shopping-cart.module').then((m) => m.ShoppingCartModule)
+    loadChildren: () =>
+      import('./components/shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
+      ),
   },
   {
     path: 'checkout',
-    loadChildren: () => import('./components/resumo-pedido/resumo-pedido.module').then((m) => m.ResumoPedidoModule),
-    canActivate: [AuthGuard]
+    loadChildren: () =>
+      import('./components/resumo-pedido/resumo-pedido.module').then(
+        (m) => m.ResumoPedidoModule
+      ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'my-orders',
-    loadChildren: () => import('./components/order/order.module').then(m => m.OrderModule),
-    canActivate: [AuthGuard]
-  }
+    loadChildren: () =>
+      import('./components/order/order.module').then((m) => m.OrderModule),
+    canActivate: [AuthGuard],
+  },
 ];
-
 
 @NgModule({
   imports: [
@@ -60,6 +67,9 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
+    FlexModule,
+    FlexLayoutModule,
+    MatSidenavModule,
   ],
   declarations: [AppComponent],
   providers: [

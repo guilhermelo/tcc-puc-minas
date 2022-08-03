@@ -16,8 +16,6 @@ export class BarraPesquisaComponent {
       q: termo.value,
     };
 
-    termo.value = '';
-
     this.router.navigate([''], { queryParams: params });
   }
 }

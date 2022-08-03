@@ -14,7 +14,8 @@ export class ProductService {
 
     let params = new HttpParams();
 
-    params = params.append('search', termoPesquisa);
+    if(termoPesquisa)
+      params = params.append('search', termoPesquisa);
 
     return this.http.get<Array<ProductList>>(`${this.url}/products`, { params });
   }

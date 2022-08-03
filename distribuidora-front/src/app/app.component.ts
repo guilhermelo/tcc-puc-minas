@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
   numberOfItemsInCart = 0;
   user: User;
 
+  showFiller = false;
+
   ngOnInit(): void {
 
     this.numberOfItemsInCart = this.shoppingCart.count();
@@ -40,5 +42,9 @@ export class AppComponent implements OnInit {
 
   acessarMeusPedidos() {
     this.router.navigate(['my-orders']);
+  }
+
+  mostraMenuSuperior() {
+    return window.innerWidth > 500;
   }
 }

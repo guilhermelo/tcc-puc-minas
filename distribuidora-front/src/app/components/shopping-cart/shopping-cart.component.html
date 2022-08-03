@@ -1,4 +1,4 @@
-<div class="cart-container">
+<div class="cart-container" *ngIf="itemsOfCart.length > 0; else carrinhoVazio">
   <div class="Header">
     <h3 class="Heading">Carrinho de Compras</h3>
     <h5 class="remove"><u>Remover todos</u></h5>
@@ -41,3 +41,8 @@
     <button mat-stroked-button class="button" color="primary" (click)="prosseguirParaCriarPedido()">Checkout</button>
   </div>
 </div>
+
+<ng-template #carrinhoVazio>
+  <h2>Você não tem nada em seu carrinho de compras...</h2>
+  <h3 class="remove" (click)="comecarComprar()" ><u>Começar a comprar</u></h3>
+</ng-template>

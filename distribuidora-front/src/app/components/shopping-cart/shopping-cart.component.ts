@@ -39,4 +39,8 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingService.remove(id);
     this.loadItems();
   }
+
+  comecarComprar() {
+    this.router.navigate(['']);
+  }
 }
