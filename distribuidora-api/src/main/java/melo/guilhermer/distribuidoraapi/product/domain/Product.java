@@ -10,8 +10,14 @@ public class Product {
 
     @Id
     private UUID id;
+
     private String name;
+
     private BigDecimal price;
+
+    private String description;
+
+    private String imageUrl;
 
     @Deprecated
     private Product() {
@@ -34,5 +40,13 @@ public class Product {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

@@ -1,14 +1,18 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'orderState'
+  name: 'orderState',
 })
 export class OrderStatePipe implements PipeTransform {
-
   transform(value: string, ...args: any[]) {
-    if(value === 'MADE') {
-      return "Realizado";
-    }
-  }
+    const status = {
+      MADE: 'Relizado',
+      PAID: 'Pago',
+      READY: 'Pronto para ser enviado',
+      OUT_FOR_DELIVERY: 'Enviado',
+      DELIVERED: 'Entregue',
+    };
 
+    return status[value];
+  }
 }

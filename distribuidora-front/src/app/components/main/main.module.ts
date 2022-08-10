@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import {
@@ -25,6 +26,7 @@ import { MainComponent } from './main.component';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
+    MatSnackBarModule,
     FlexModule,
     FlexLayoutModule
   ],

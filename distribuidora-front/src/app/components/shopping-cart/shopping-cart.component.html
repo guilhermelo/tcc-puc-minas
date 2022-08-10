@@ -13,19 +13,14 @@
     </div>
     <div class="about">
       <h4 class="title">{{ item.name }}</h4>
-      <!-- <h3 class="subtitle">250ml</h3> -->
-      <!-- <img
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        style="height: 30px"
-      /> -->
     </div>
     <div class="counter">
-      <div class="btn">-</div>
-      <div class="count">2</div>
-      <div class="btn">+</div>
+      <div class="btn" (click)="dec(item)">-</div>
+      <div class="count"> {{ item.amount }} </div>
+      <div class="btn" (click)="inc(item)">+</div>
     </div>
     <div class="prices">
-      <div class="amount">{{ item.price }}</div>
+      <div class="amount">{{ item.price | currency }}</div>
       <div class="remove" (click)="remover(item.productId)"><u>Remover</u></div>
     </div>
   </div>
@@ -34,9 +29,9 @@
     <div class="total">
       <div>
         <div class="Subtotal">Total</div>
-        <div class="items"> {{ itemsOfCart.length }} itens</div>
+        <div class="items"> {{ quantidadeItems }} itens</div>
       </div>
-      <div class="total-amount"> {{ total }} </div>
+      <div class="total-amount"> {{ valorTotal | currency }} </div>
     </div>
     <button mat-stroked-button class="button" color="primary" (click)="prosseguirParaCriarPedido()">Checkout</button>
   </div>

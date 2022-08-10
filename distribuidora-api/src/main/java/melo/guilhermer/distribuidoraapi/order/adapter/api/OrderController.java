@@ -63,7 +63,7 @@ public class OrderController {
 
         Product product = productRepository.findById(request.getProductId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 
-        order.addItem(new OrderItem(product, request.getQuantity(), request.getObservation()));
+        order.addItem(new OrderItem(product, request.getQuantity(), request.getTotal(), request.getObservation()));
 
         repository.save(order);
 

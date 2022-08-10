@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { combineLatest, forkJoin } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ShoppingCartList } from 'src/app/schema/shopping-cart';
+import { ShoppingCartItem } from 'src/app/schema/shopping-cart';
 import { OrderService } from 'src/app/services/order.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
@@ -14,28 +15,29 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
   styleUrls: ['./resumo-pedido.component.css'],
 })
 export class ResumoPedidoComponent implements OnInit {
-  valorFrete: string = '0';
+  valorFrete: number = 0;
 
   formulario: FormGroup;
   user: User;
 
-  itens: ShoppingCartList[] = [];
+  itens: ShoppingCartItem[] = [];
 
   constructor(
     private router: Router,
     public formBuilder: FormBuilder,
     public shoppingCartService: ShoppingCartService,
     private authService: AuthService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-
-    this.itens = this.shoppingCartService.getAll();
+    this.loadData();
 
     this.formulario = this.formBuilder.group({
       rua: ['', Validators.required],
       numero: ['', Validators.required],
+      cep: ['', Validators.required],
       bairro: ['', Validators.required],
       cidade: ['', Validators.required],
       estado: ['', Validators.required],
@@ -49,8 +51,11 @@ export class ResumoPedidoComponent implements OnInit {
       this.user = user;
     });
 
-    const numero = (Math.random() * 100).toString().split('.');
-    this.valorFrete = `${numero[0]},${numero[1].substr(0, 2)}`;
+    this.valorFrete = Math.random() * 20;
+  }
+
+  private loadData() {
+    this.itens = this.shoppingCartService.getAll();
   }
 
   criarPedido() {
@@ -59,7 +64,7 @@ export class ResumoPedidoComponent implements OnInit {
       address: {
         street: this.formulario.get('rua').value,
         number: this.formulario.get('numero').value,
-        zipCode: '',
+        zipCode: this.formulario.get('cep').value,
         district: this.formulario.get('bairro').value,
         city: this.formulario.get('cidade').value,
         state: this.formulario.get('estado').value,
@@ -68,9 +73,7 @@ export class ResumoPedidoComponent implements OnInit {
         name: this.formulario.get('nome').value,
         number: this.formulario.get('numeroCartao').value,
         cvv: this.formulario.get('cvv').value,
-        expirationDate: (
-          this.formulario.get('dataExpiracao').value as string
-        ).replace('/', ''),
+        expirationDate: this.formulario.get('dataExpiracao').value
       },
     };
 
@@ -79,11 +82,12 @@ export class ResumoPedidoComponent implements OnInit {
       .pipe(this.addItemsToOrder(this.itens))
       .subscribe((value) => {
         this.shoppingCartService.clear();
-        this.router.navigate(['']);
+        this.snackBar.open('Pedido criado com sucesso!', '', { duration: 3000 });
+        setTimeout(() => this.router.navigate(['']), 3000);
       });
   }
 
-  addItemsToOrder(itemsOfCart: ShoppingCartList[]) {
+  addItemsToOrder(itemsOfCart: ShoppingCartItem[]) {
     return switchMap((id: string) => {
       let request = [];
 
@@ -92,12 +96,18 @@ export class ResumoPedidoComponent implements OnInit {
           this.orderService.createOrderItem(id, {
             productId: item.productId,
             observation: item.name,
-            quantity: item.price,
+            quantity: item.amount,
+            total: item.price
           })
         );
       }
 
       return combineLatest(request);
     });
+  }
+
+  remover(productId: string) {
+    this.shoppingCartService.remove(productId);
+    this.loadData();
   }
 }

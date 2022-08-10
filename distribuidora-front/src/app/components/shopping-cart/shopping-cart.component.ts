@@ -5,7 +5,7 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { forkJoin, OperatorFunction } from 'rxjs';
-import { ShoppingCartList } from 'src/app/schema/shopping-cart';
+import { ShoppingCartItem } from 'src/app/schema/shopping-cart';
 import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
@@ -16,19 +16,21 @@ import { AuthService, User } from '@auth0/auth0-angular';
 export class ShoppingCartComponent implements OnInit {
   constructor(
     private shoppingService: ShoppingCartService,
-    private router: Router,
+    private router: Router
   ) {}
 
-  itemsOfCart = new Array<ShoppingCartList>();
-  total = 0;
+  itemsOfCart = new Array<ShoppingCartItem>();
+  valorTotal = 0;
+  quantidadeItems = 0;
 
   ngOnInit(): void {
-    this.loadItems();
-    this.total = this.itemsOfCart.reduce((total, atual) => total + atual.price, 0);
+    this.updateData();
   }
 
-  private loadItems() {
+  private updateData() {
     this.itemsOfCart = this.shoppingService.getAll();
+    this.calcularQuantidadeItens();
+    this.calcularValorTotal();
   }
 
   prosseguirParaCriarPedido() {
@@ -37,10 +39,28 @@ export class ShoppingCartComponent implements OnInit {
 
   remover(id: string) {
     this.shoppingService.remove(id);
-    this.loadItems();
+    this.updateData();
   }
 
   comecarComprar() {
     this.router.navigate(['']);
+  }
+
+  inc(item: ShoppingCartItem) {
+    this.shoppingService.increaseAmountItem(item);
+    this.updateData();
+  }
+
+  dec(item: ShoppingCartItem) {
+    this.shoppingService.decreaseAmountItem(item);
+    this.updateData();
+  }
+
+  calcularQuantidadeItens() {
+    this.quantidadeItems = this.shoppingService.quantidadeItems();
+  }
+
+  calcularValorTotal() {
+    this.valorTotal = this.shoppingService.valorTotal();
   }
 }

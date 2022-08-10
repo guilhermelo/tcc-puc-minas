@@ -9,27 +9,32 @@
           <input formControlName="rua" matInput maxlength="50" />
         </mat-form-field>
 
-        <div fxLayout="row" fxLayoutGap="0.5%">
-          <mat-form-field fxFlex="50" appearance="fill">
+        <div fxLayout="row" fxLayoutGap="0.3%">
+          <mat-form-field fxFlex="33" appearance="fill">
             <mat-label>Número</mat-label>
-            <input formControlName="numero" matInput maxlength="50" />
+            <input formControlName="numero" matInput maxlength="6" />
           </mat-form-field>
 
-          <mat-form-field fxFlex="50" appearance="fill">
+          <mat-form-field fxFlex="33" appearance="fill">
+            <mat-label>CEP</mat-label>
+            <input formControlName="cep" matInput maxlength="9" />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="33" appearance="fill">
             <mat-label>Bairro</mat-label>
-            <input formControlName="bairro" matInput maxlength="50" />
+            <input formControlName="bairro" matInput maxlength="20" />
           </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.sm="column" fxLayout.lt-sm="column" fxLayout fxLayoutGap="0.5%">
           <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>Cidade</mat-label>
-            <input formControlName="cidade" matInput maxlength="50" />
+            <input formControlName="cidade" matInput maxlength="30" />
           </mat-form-field>
 
           <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>Estado</mat-label>
-            <input formControlName="estado" matInput maxlength="50" />
+            <input formControlName="estado" matInput maxlength="2" />
           </mat-form-field>
         </div>
       </div>
@@ -44,17 +49,17 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Número</mat-label>
-          <input formControlName="numeroCartao" matInput maxlength="50" />
+          <input formControlName="numeroCartao" matInput maxlength="16" />
         </mat-form-field>
         <div fxLayout="row" fxLayoutGap="0.5%">
           <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>CVV</mat-label>
-            <input formControlName="cvv" matInput maxlength="50" />
+            <input formControlName="cvv" matInput maxlength="3" />
           </mat-form-field>
 
           <mat-form-field fxFlex="50" appearance="fill">
             <mat-label>Data de Expiração</mat-label>
-            <input formControlName="dataExpiracao" matInput maxlength="50" />
+            <input formControlName="dataExpiracao" matInput maxlength="5" />
           </mat-form-field>
         </div>
       </div>
@@ -69,22 +74,9 @@
       </div>
       <div class="about">
         <h4 class="title">{{ item.name }}</h4>
-        <!-- <h3 class="subtitle">250ml</h3> -->
-        <!-- <img
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        style="height: 30px"
-      /> -->
-      </div>
-      <div class="counter">
-        <div class="btn">-</div>
-        <div class="count">2</div>
-        <div class="btn">+</div>
       </div>
       <div class="prices">
-        <div class="amount">{{ item.price }}</div>
-        <div class="remove" (click)="remover(item.productId)">
-          <u>Remover</u>
-        </div>
+        <div class="amount">{{ item.price | currency }}</div>
       </div>
     </div>
 
@@ -94,8 +86,8 @@
           <div class="Subtotal">Total</div>
           <div class="items"> {{ itens.length }} itens</div>
         </div>
-        <div class="Subtotal">{{ shoppingCartService.valorTotal() }}</div>
-        <div class="Subtotal">Frete: R$ {{ valorFrete }} </div>
+        <div class="Subtotal">{{ shoppingCartService.valorTotal() | currency }}</div>
+        <div class="Subtotal">Frete: {{ valorFrete | currency }} </div>
       </div>
     </div>
   </mat-card>
@@ -109,6 +101,7 @@
       type="button"
       color="primary"
       (click)="criarPedido()"
+      [disabled]="formulario.invalid && itens.length"
     >
       Finalizar
     </button>

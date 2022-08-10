@@ -5,3 +5,7 @@
 .content > mat-card {
   width: 200px;
 }
+
+.green-snackbar {
+  background: green;
+}

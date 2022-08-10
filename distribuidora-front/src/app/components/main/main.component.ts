@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { ProductList } from 'src/app/schema/poduct';
 import { ProductService } from 'src/app/services/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'main',
@@ -16,7 +17,8 @@ export class MainComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   products = new Array<ProductList>();
@@ -35,6 +37,7 @@ export class MainComponent implements OnInit {
 
   public adicionarCarrinho(product: ProductList) {
     this.shoppingCartService.addItemToCart(product);
+    this.snackBar.open('Produto adicionado ao carrinho!', 'Fechar', { duration: 5000, panelClass: ['green-snackbar'] });
   }
 
   onResize(event: any) {

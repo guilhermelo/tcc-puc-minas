@@ -5,6 +5,7 @@ export interface CreateOrder {
 export interface CreateOrderItem {
   productId: string;
   quantity: number;
+  total: number;
   observation: string;
 }
 

@@ -4,6 +4,8 @@ import melo.guilhermer.distribuidoraapi.order.domain.model.Order;
 import melo.guilhermer.distribuidoraapi.order.domain.projection.OrderList;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;
@@ -17,4 +19,8 @@ public interface OrderRepository extends Repository<Order, UUID> {
     Slice<OrderList> findAllByUserNickname(String userNickname, Pageable pageable);
 
     Optional<Order> findById(UUID orderId);
+
+    @Modifying
+    @Query(value = "UPDATE ORDERS SET STATUS = 'PAID' WHERE STATUS = 'MADE'", nativeQuery = true)
+    void payAllOrdersMade();
 }

@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,10 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProductService } from './services/product.service';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 
 const authConfiguration: AuthConfig = {
   domain: 'dev-ail8x0n8.us.auth0.com',
@@ -75,6 +79,8 @@ const routes: Routes = [
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ProductService,
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],
   bootstrap: [AppComponent],
 })

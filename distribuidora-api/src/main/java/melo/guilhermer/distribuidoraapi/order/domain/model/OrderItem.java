@@ -20,14 +20,17 @@ public class OrderItem {
 
     private String observation;
 
+    private BigDecimal total;
+
     private OrderItem() {
     }
 
-    public OrderItem(Product product, BigDecimal quantity, String observation) {
+    public OrderItem(Product product, BigDecimal quantity, BigDecimal total, String observation) {
         this.id = UUID.randomUUID();
         this.product = product;
         this.quantity = quantity;
         this.observation = observation;
+        this.total = total;
     }
 
     public UUID getId() {
@@ -44,5 +47,9 @@ public class OrderItem {
 
     public String getObservation() {
         return observation;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
     }
 }

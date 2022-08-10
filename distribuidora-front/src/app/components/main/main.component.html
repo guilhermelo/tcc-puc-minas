@@ -7,15 +7,12 @@
         </mat-card-header>
         <img
           mat-card-md-image
-          src="https://www.imigrantesbebidas.com.br/bebida/images/products/full/222-cerveja-heineken-long-neck-330ml.jpg"
-          alt="Photo of a Shiba Inu"
+          [src]="product.imageUrl"
+          [alt]="product.name"
         />
         <mat-card-content>
-          <p>
-            Descrição do produto bem grande para a gente ver como fica no layout
-            essa bagaceira doida
-          </p>
-          <p>{{ product.price }}</p>
+          <p>{{ product.description }}</p>
+          <p>{{ product.price | currency }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button

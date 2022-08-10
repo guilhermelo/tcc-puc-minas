@@ -9,6 +9,8 @@ public class CreateOrderItemRequest {
 
     private BigDecimal quantity;
 
+    private BigDecimal total;
+
     private String observation;
 
     public CreateOrderItemRequest() {
@@ -24,5 +26,9 @@ public class CreateOrderItemRequest {
 
     public String getObservation() {
         return observation;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
     }
 }

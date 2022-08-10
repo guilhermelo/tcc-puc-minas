@@ -9,5 +9,9 @@ public interface ProductList {
 
     String getName();
 
+    String getDescription();
+
     BigDecimal getPrice();
+
+    String getImageUrl();
 }
