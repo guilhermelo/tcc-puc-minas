@@ -20,6 +20,8 @@ public interface OrderRepository extends Repository<Order, UUID> {
 
     Optional<Order> findById(UUID orderId);
 
+    Optional<OrderList> findByIdAndUserNickname(UUID id, String userNickname);
+
     @Modifying
     @Query(value = "UPDATE ORDERS SET STATUS = 'PAID' WHERE STATUS = 'MADE'", nativeQuery = true)
     void payAllOrdersMade();

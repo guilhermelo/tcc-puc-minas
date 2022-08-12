@@ -21,7 +21,7 @@ mat-toolbar {
 }
 
 .mat-toolbar {
-  height: 7vh;
+  height: 10%;
 }
 
 div {
@@ -64,4 +64,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+mat-sidenav-container {
+  background-color: #fff;
 }

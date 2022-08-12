@@ -11,9 +11,13 @@ public interface OrderItemList {
 
     BigDecimal getQuantity();
 
+    BigDecimal getTotal();
+
     interface Product {
         UUID getId();
         String getName();
         BigDecimal getPrice();
+        String getImageUrl();
+        String getDescription();
     }
 }

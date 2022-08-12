@@ -20,12 +20,14 @@ export interface OrderList {
   };
   status: string;
   generatedAt: string;
+  identifier: string;
 }
 
 export interface OrderItemList {
   id: string;
   product: Product;
   quantity: number;
+  total: number;
 }
 
 interface Product {

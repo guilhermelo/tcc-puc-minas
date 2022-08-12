@@ -1,0 +1,24 @@
+<div class="Cart-Items" *ngFor="let item of items">
+  <div class="image-box">
+    <img [src]="item.imageUrl" />
+  </div>
+  <div class="about">
+    <h4 class="title">{{ item.name }}</h4>
+  </div>
+  <div class="prices">
+    <div class="amount">{{ item.price | currency }}</div>
+  </div>
+</div>
+
+<div class="checkout">
+  <div class="total">
+    <div>
+      <div class="Subtotal">Total</div>
+      <div class="items">{{ items.length }} itens</div>
+    </div>
+    <div class="Subtotal">
+      {{ subTotal | currency }}
+    </div>
+    <div class="Subtotal">Frete: {{ frete | currency }}</div>
+  </div>
+</div>

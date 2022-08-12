@@ -41,4 +41,12 @@ export class OrderService {
   findOrderItemsByOrderId(id: string) {
     return this.http.get<OrderItemList[]>(`${this.url}/${id}/items`);
   }
+
+  getOrderByIdAndUser(orderId: any) {
+    return this.auth.user$.pipe(
+      switchMap((user) =>
+        this.http.get<OrderList>(`${this.url}/${orderId}/${user.nickname}`)
+      )
+    );
+  }
 }

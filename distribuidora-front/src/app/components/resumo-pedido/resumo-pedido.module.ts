@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OrderService } from 'src/app/services/order.service';
+import { ItemsListModule } from '../items-list/items-list.module';
 import { ResumoPedidoComponent } from './resumo-pedido.component';
 import { ResumoRoutingModule } from './resumo.routing';
 
@@ -23,7 +24,8 @@ import { ResumoRoutingModule } from './resumo.routing';
     MatButtonModule,
     FlexModule,
     FlexLayoutModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ItemsListModule
   ],
   declarations: [ResumoPedidoComponent],
   exports: [ResumoPedidoComponent],

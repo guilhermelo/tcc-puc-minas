@@ -1,1 +1,36 @@
-Detalhe do pedido
+  <div class="order" *ngIf="order">
+    <h3>
+      Número do Pedido:
+      <span class="identifier">{{ order.identifier }}</span>
+    </h3>
+    <ol>
+      <li>Situação: {{ order.status | orderState }}</li>
+      <li>Pedido realizado em: {{ order.generatedAt | date: "dd/MM/yyyy" }}</li>
+    </ol>
+  </div>
+<div class="Cart-Items" *ngFor="let item of orderItems">
+  <div class="image-box">
+    <img [src]="item.product.imageUrl" />
+  </div>
+  <div class="about">
+    <h4 class="title">{{ item.product.name }}</h4>
+    <p>{{ item.product.description }}</p>
+  </div>
+  <div class="prices">
+    <div class="amount">{{ item.total | currency }}</div>
+  </div>
+</div>
+
+<div class="checkout">
+  <div class="total">
+    <div>
+      <div class="Subtotal">Total</div>
+      <div class="items">{{ totalItems }} itens</div>
+    </div>
+    <div class="Subtotal">
+      {{ valorTotal | currency }}
+    </div>
+    <!-- <div class="Subtotal">Frete: {{ frete | currency }}</div> -->
+  </div>
+</div>
+

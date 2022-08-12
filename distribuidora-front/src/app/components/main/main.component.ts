@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
 
   public adicionarCarrinho(product: ProductList) {
     this.shoppingCartService.addItemToCart(product);
-    this.snackBar.open('Produto adicionado ao carrinho!', 'Fechar', { duration: 5000, panelClass: ['green-snackbar'] });
+    this.snackBar.open(`${product.name} adicionado ao carrinho!`, 'Fechar', { duration: 5000, panelClass: ['green-snackbar'] });
   }
 
   onResize(event: any) {

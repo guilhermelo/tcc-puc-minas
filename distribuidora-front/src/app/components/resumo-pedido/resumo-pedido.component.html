@@ -26,13 +26,13 @@
           </mat-form-field>
         </div>
 
-        <div fxLayout="row" fxLayout.sm="column" fxLayout.lt-sm="column" fxLayout fxLayoutGap="0.5%">
-          <mat-form-field fxFlex="50" appearance="fill">
+        <div fxLayout="row" fxLayoutGap="0.5%">
+          <mat-form-field fxFlex="50" fxFlex.sm="80" appearance="fill">
             <mat-label>Cidade</mat-label>
             <input formControlName="cidade" matInput maxlength="30" />
           </mat-form-field>
 
-          <mat-form-field fxFlex="50" appearance="fill">
+          <mat-form-field fxFlex="50" fxFlex.sm="20" appearance="fill">
             <mat-label>Estado</mat-label>
             <input formControlName="estado" matInput maxlength="2" />
           </mat-form-field>
@@ -68,28 +68,7 @@
 
   <mat-card fxFlex="100%">
     <h3>Resumo do Pedido</h3>
-    <div class="Cart-Items" *ngFor="let item of itens">
-      <div class="image-box">
-        <img [src]="item.imageUrl" style="height: 120px" />
-      </div>
-      <div class="about">
-        <h4 class="title">{{ item.name }}</h4>
-      </div>
-      <div class="prices">
-        <div class="amount">{{ item.price | currency }}</div>
-      </div>
-    </div>
-
-    <div class="checkout">
-      <div class="total">
-        <div>
-          <div class="Subtotal">Total</div>
-          <div class="items"> {{ itens.length }} itens</div>
-        </div>
-        <div class="Subtotal">{{ shoppingCartService.valorTotal() | currency }}</div>
-        <div class="Subtotal">Frete: {{ valorFrete | currency }} </div>
-      </div>
-    </div>
+      <items-list [items]="itens" [subTotal]="shoppingCartService.valorTotal()" [frete]="valorFrete"></items-list>
   </mat-card>
 
   <p>

@@ -21,6 +21,8 @@ public class OrderItemQuery {
     @Column(name = "order_id")
     private UUID orderId;
 
+    private BigDecimal total;
+
     private OrderItemQuery() {
 
     }
@@ -35,5 +37,9 @@ public class OrderItemQuery {
 
     public BigDecimal getQuantity() {
         return quantity;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
     }
 }

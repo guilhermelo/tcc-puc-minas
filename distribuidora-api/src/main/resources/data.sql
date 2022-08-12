@@ -1,0 +1,16 @@
+insert into product (id, name, description, price, image_url) values
+('caf40588-e7a1-4b61-a596-33dfb281c30c', 'Cerveja Heineken', 'Cerveja Heineken 350 ml', 4.50, 'https://static.paodeacucar.com/img/uploads/1/623/17634623.png'),
+('dc941566-efcc-4fe7-b6ec-8d79a1ea7d9f', 'Bisnaguinha Bauducco', 'Bisnaguinha Bauducco 260g', 5.99, 'https://static.paodeacucar.com/img/uploads/1/102/19487102.png'),
+('fff017a6-cc7e-428b-8c3d-7aaf3fb07b48', 'Molho Barbecue Heinz', 'Molho Barbecue Heinz 397g', 7.30, 'https://static.paodeacucar.com/img/uploads/1/70/12581070.png'),
+('5ef3c7d7-b813-4bd5-8ddb-db32c3accadb', 'Tábua de Frios', 'Tábua de Frios Ceratti 150g', 45.90, 'https://static.paodeacucar.com/img/uploads/1/323/19531323.jpg'),
+('a2d52b28-7447-4d8a-bb7f-80e828e62172', 'Condicionador Aussie', 'Condicionador Aussie Super Hidratação 360ml', 36.99, 'https://static.paodeacucar.com/img/uploads/1/437/21758437.jpg'),
+('c82fe213-7822-4081-9eee-e0a349c61bd4', 'Salgadinho Churrasco', 'Salgadinho De Churrasco Torcida Jr. 45G', 2.35, 'https://static.paodeacucar.com/img/uploads/1/691/23980691.jpg'),
+('f5b42a18-f681-4c12-b641-1137bccdff14', 'Salgadinho de Pimenta', 'Salgadinho De Pimenta Mexicana Torcida 100G', 4.99, 'https://static.paodeacucar.com/img/uploads/1/433/23445433.jpg'),
+('587fffef-f90d-40e2-a4ae-97a8fa12fab9', 'Guaraná Kuat', 'Guaraná Kuat Original PET 2L', 5.89, 'https://static.paodeacucar.com/img/uploads/1/685/677685.jpg'),
+('40e92424-5a79-489a-8da5-9a308a2c26b2', 'Fanta Laranja', 'Fanta Laranja Zero 2L', 7.99, 'https://static.paodeacucar.com/img/uploads/1/841/11769841.jpg'),
+('0ed1ce33-e04e-4db9-ad1a-4683986e8bef', 'Refrigerante Uva', 'Refrigerante Uva Fanta Garrafa 2L', 8.59, 'https://static.paodeacucar.com/img/uploads/1/28/20030028.jpg'),
+('73bf60d2-5260-4918-9cad-b86bd5dae232', 'Vanish Crystal White', 'Pó Vanish Crystal White 400g', 18.29, 'https://static.paodeacucar.com/img/uploads/1/280/19941280.jpg'),
+('ea914a2a-5d65-4c9e-bb4a-8232ab606495', 'Limpador PATO Pinho', 'Limpador PATO Pinho 500 ml', 11.03, 'https://static.paodeacucar.com/img/uploads/1/748/21768748.jpg'),
+('535227f7-3835-404f-96f2-09eb0c4203db', 'Desinfetante Spray Lysol', 'Desinfetante Spray Lysol - Pureza do Algodão 295g', 27.79, 'https://static.paodeacucar.com/img/uploads/1/679/20015679.jpg'),
+('f8b6dbd9-f10f-4017-a8bc-b3b7b0b8f041', 'Limpador Perfumado Veja', 'Veja Flores do Mediterrâneo - 2L', 18.99, 'https://static.paodeacucar.com/img/uploads/1/169/12014169.jpg'),
+('2d677933-8b80-4fe2-b1d9-cdde5b5b2298', 'Sabão em Pó Omo', 'Sabão em Pó Omo  2.2kg', 35.99, 'https://static.paodeacucar.com/img/uploads/1/478/18508478.jpg');

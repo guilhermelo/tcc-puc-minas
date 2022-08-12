@@ -3,7 +3,7 @@
   <div class="order">
     <h3>
       Número do Pedido:
-      <span style="color: #696969">4447ca2bf8c1421ebca8a6f43b6e86d6</span>
+      <span class="identifier">{{ order.identifier }}</span>
     </h3>
     <ol>
       <li>Situação: {{ order.status | orderState }}</li>

@@ -79,4 +79,9 @@ public class OrderController {
     public List<OrderItemList> findItemsByOrderId(@PathVariable UUID orderId) {
         return orderItemRepository.findAllByOrderId(orderId);
     }
+
+    @GetMapping("/{orderId}/{userNickname}")
+    public OrderList getOrderByIdAndUser(@PathVariable UUID orderId, @PathVariable String userNickname) {
+        return repository.findByIdAndUserNickname(orderId, userNickname).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
+    }
 }
