@@ -18,8 +18,6 @@ public class OrderItem {
 
     private BigDecimal quantity;
 
-    private String observation;
-
     private BigDecimal total;
 
     private OrderItem() {
@@ -29,7 +27,6 @@ public class OrderItem {
         this.id = UUID.randomUUID();
         this.product = product;
         this.quantity = quantity;
-        this.observation = observation;
         this.total = total;
     }
 
@@ -43,10 +40,6 @@ public class OrderItem {
 
     public BigDecimal getQuantity() {
         return quantity;
-    }
-
-    public String getObservation() {
-        return observation;
     }
 
     public BigDecimal getTotal() {

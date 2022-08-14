@@ -55,4 +55,32 @@ public class Order {
     public void addItem(OrderItem orderItem) {
         this.items.add(Objects.requireNonNull(orderItem));
     }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public LocalDateTime getGeneratedAt() {
+        return generatedAt;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
 }

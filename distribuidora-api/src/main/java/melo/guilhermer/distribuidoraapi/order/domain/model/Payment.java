@@ -43,4 +43,12 @@ public class Payment {
     public String getExpirationDate() {
         return expirationDate;
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public PaymentStatus getStatus() {
+        return status;
+    }
 }

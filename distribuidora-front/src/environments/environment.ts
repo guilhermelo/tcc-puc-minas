@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // api_url: 'http://localhost:5000'
-  api_url: 'http://distribuicaoapiv1-env.eba-s3iwbz3c.us-east-1.elasticbeanstalk.com'
+  api_url: 'http://localhost:5000'
 };
 
 /*
